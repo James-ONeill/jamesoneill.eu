@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <h1>About</h1>
+    <h1 class="page-title text-center">About</h1>
 
     <p>
         I'm a software developer from Bristol in the South West of England.
