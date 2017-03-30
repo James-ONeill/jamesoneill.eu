@@ -1,0 +1,7 @@
+# The Post Where I Introduce Myself
+
+Hi, I’m James.
+
+I’m a software developer from Bristol in the UK. I first started properly learning to code at the start of 2012 after cobbling together a terrible website for my father’s business towards the end of the previous year. At the time I was 28 and had been very unhappy in the jobs I’d found myself doing since finishing university. Originally it wasn’t my specific intention to become a developer. I had an idea in my head that I would do something web related and in the absence of a more specific idea of what I was aiming for I started learning to code in order to follow my curiosity for how the web works. By the end of the year I started taking freelance web development work which got me started on my current career track.
+
+This is a blog about software development and it is also a blog about anything else that I am interested in or which happens to be on my mind at the time. Starting a blog and working on my own site has been on my mental to do list for several years and has frequently been pushed down by less vaguely defined. What I want from this blog, apart from a legion of loyal readers who hang on my every word, is a place where I can get better at writing. Writing for an audience is something that I find extremely difficult and frustrating which has lead to me putting it off. I sincerely hope that if I can get in the habit of writing for this blog regularly then my communication skills will improve dramatically.
