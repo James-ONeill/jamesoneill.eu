@@ -22,3 +22,12 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(App\Post::class, function (Faker\Generator $faker) {
+    return [
+        'title' => 'Hello, World',
+        'body' => '# Hello, World',
+        'published_at' => Carbon\Carbon::now()
+    ];
+});

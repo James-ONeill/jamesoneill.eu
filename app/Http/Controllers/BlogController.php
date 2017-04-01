@@ -2,23 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Posts;
+use App\Post;
 
 class BlogController extends Controller
 {
-    protected $posts;
-
-    public function __construct(Posts $posts)
-    {
-        $this->posts = $posts;
-    }
-
     public function show($year, $month, $day, $title)
     {
-        if ($content = $this->posts->get($year, $month, $day, $title)) {
-            return view('post', ['content' => $content]);
-        }
+        $post = Post::where('slug', str_slug($title))->firstOrFail();
 
-        return abort(404);
+        return view('post', ['post' => $post]);
     }
 }

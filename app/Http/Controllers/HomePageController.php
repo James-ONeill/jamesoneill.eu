@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Posts;
 
 class HomePageController extends Controller
 {
-    public function show()
+    public function show(Posts $posts)
     {
         return view('home');
     }

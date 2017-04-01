@@ -1,5 +1,5 @@
 @extends('layouts.master')
 
 @section('content')
-    {!! $content !!}
+    {!! $post->markdown() !!}
 @endsection

@@ -17,6 +17,22 @@ class Posts
         $this->markdown = $markdown;
     }
 
+    public function index()
+    {
+        return collect($this->files->directories(base_path('resources/posts')))->mapWithKeys(function ($dir) {
+            return [
+                substr($dir, -4) => collect($this->files->directories($dir))->mapWithKeys(function ($dir) {
+                    return [
+                        substr($dir, -2) => collect($this->files->directories($dir))->mapWithKeys(function ($dir) {
+                            return [
+                                substr($dir, -2) => collect($this->files->files($dir))->map(function ($file) {
+                                    return $this->markdown->text($this->files->get($file));
+                            })];
+                })];
+            })];
+        })->filter();
+    }
+
     public function get($year, $month, $day, $title)
     {
         $path = base_path("resources/posts/{$year}/{$month}/{$day}/{$title}.md");
@@ -27,4 +43,14 @@ class Posts
 
         return null;
     }
+
+    protected function getYears()
+    {
+        return collect($this->files->directories(base_path('resources/posts')))->mapWithKeys(function ($dir) {
+            return [ substr($dir, -4) => $this->getMonths($dir)];
+        })->filter;
+    }
+
+    protected function getMonths()
+    {}
 }
