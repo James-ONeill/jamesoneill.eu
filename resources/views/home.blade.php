@@ -18,4 +18,13 @@
         me an email at <a href="mailto:james@jamesoneill.eu">james@jamesoneill.eu</a>.
         Also you could <a href="https://www.facebook.com/ambertibetanterrier/">like my Dog on Facebook.</a>
     </p>
+
+    <ul class="list-unstyled">
+        @foreach($posts as $post)
+            <li>
+                {{ $post->published_at->format('d/m/Y') }}
+                <h2><a href="{{ $post->url() }}">{{ $post->title }}</a></h2>
+            </li>
+        @endforeach
+    </ul>
 @endsection

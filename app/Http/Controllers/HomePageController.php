@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Posts;
+use App\Post;
 
 class HomePageController extends Controller
 {
-    public function show(Posts $posts)
+    public function show()
     {
-        return view('home');
+        return view('home', ['posts' => Post::all()]);
     }
 }
