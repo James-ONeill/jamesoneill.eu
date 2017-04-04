@@ -24,7 +24,7 @@
     <ul class="list-unstyled">
         @foreach($posts as $post)
             <li class="blog-post">
-                {{ $post->published_at->format('d/m/Y') }}
+                {{ $post->published_at->format('jS F Y') }}
                 <h2><a href="{{ $post->url() }}">{{ $post->title }}</a></h2>
             </li>
         @endforeach
