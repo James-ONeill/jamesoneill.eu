@@ -19,9 +19,11 @@
         Also you could <a href="https://www.facebook.com/ambertibetanterrier/">like my Dog on Facebook.</a>
     </p>
 
+    <h1 class="text-center">Blog</h1>
+
     <ul class="list-unstyled">
         @foreach($posts as $post)
-            <li>
+            <li class="blog-post">
                 {{ $post->published_at->format('d/m/Y') }}
                 <h2><a href="{{ $post->url() }}">{{ $post->title }}</a></h2>
             </li>

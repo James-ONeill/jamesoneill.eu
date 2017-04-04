@@ -14,7 +14,9 @@
         <div class="container">
             @section('header')
                 <header class="header">
-                    <h1 class="header__title text-center">James O'Neill</h1>
+                    <h1 class="header__title text-center">
+                        James O'Neill
+                    </h1>
                 </header>
             @show
 
