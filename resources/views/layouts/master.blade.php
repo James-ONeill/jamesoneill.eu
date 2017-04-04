@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>James O'Neill</title>
+        @include('analytics.google')
 
         <link rel="stylesheet" type="text/css" href="/css/app.css">
     </head>
