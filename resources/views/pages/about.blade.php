@@ -18,7 +18,7 @@
             Also you could <a href="https://www.facebook.com/ambertibetanterrier/">like my Dog on Facebook.</a>
         </p>
     </div>
-    <div>
+    {{--<div>
         <h1 class="page-title text-center">About This Site</h1>
 
         <p>
@@ -59,5 +59,5 @@
             first version of the site used this methodology to display a single
             blog post
         </p>
-    </div>
+    </div>--}}
 @endsection
