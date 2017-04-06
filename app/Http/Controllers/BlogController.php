@@ -8,7 +8,7 @@ class BlogController extends Controller
 {
     public function show($year, $month, $day, $title)
     {
-        $post = Post::where('slug', str_slug($title))->firstOrFail();
+        $post = Post::where('slug', $title)->firstOrFail();
 
         return view('post', ['post' => $post]);
     }

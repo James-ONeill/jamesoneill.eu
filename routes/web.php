@@ -13,6 +13,8 @@
 
 Route::get('/', 'HomePageController@show');
 
+Route::get('about', 'AboutPageController@show');
+
 Route::get('{year}/{month}/{day}/{title}', 'BlogController@show')->where([
     'year' => '[0-9]{4}', 'month' => '[0-9]{2}', 'date' => '[0-9]{2}'
 ]);

@@ -19,7 +19,7 @@
                         <img class="gravatar"  src="https://www.gravatar.com/avatar/{{ md5('james@levelupdevelopment.co.uk') }}?s=80">
                     </div>
                     <h1 class="header__title text-center">
-                        James O'Neill
+                        <a href="/">James O'Neill</a>
                     </h1>
                 </header>
             @show
