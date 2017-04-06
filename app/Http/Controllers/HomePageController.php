@@ -8,6 +8,8 @@ class HomePageController extends Controller
 {
     public function show()
     {
-        return view('home', ['posts' => Post::all()]);
+        return view('home', [
+            'posts' => Post::orderBy('published_at', 'desc')->get()
+        ]);
     }
 }
