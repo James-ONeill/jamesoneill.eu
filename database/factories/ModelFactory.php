@@ -26,7 +26,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->define(App\Post::class, function (Faker\Generator $faker) {
     return [
-        'title' => 'Hello, World',
+        'title' => $faker->unique()->words(3, true),
         'body' => '# Hello, World',
         'published_at' => Carbon\Carbon::now()
     ];
