@@ -2,5 +2,7 @@
 
 @section('content')
     <h1>{{ $post->title }}</h1>
-    {!! $post->markdown() !!}
+    <div class="post__body">
+        {!! $post->markdown() !!}
+    </div>
 @endsection
