@@ -2,11 +2,14 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use ParsedownExtra;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+    protected $guarded = [];
+
     protected $dates = ['published_at'];
 
     public function url()
@@ -24,5 +27,10 @@ class Post extends Model
         $this->slug = str_slug($this->title);
 
         return parent::save($options);
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published_at', '<=', Carbon::now());
     }
 }
