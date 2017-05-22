@@ -30,11 +30,22 @@
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#">
+                        <a href="#" data-toggle="dropdown">
                             <img src="https://www.gravatar.com/avatar/64e1c29b55bf5db4b04c65f552ddb474?s=35" height="35" width="35" class="navbar-avatar">
                             James O'Neill
                             <b class="caret"></b>
                         </a>
+
+                        <ul class="dropdown-menu">
+                            <li>
+                                <form method="POST" action="logout" id="logout">
+                                    {!! csrf_field() !!}
+                                </form>
+                                <a href="#" onClick="document.getElementById('logout').submit()">
+                                    Log Out
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
