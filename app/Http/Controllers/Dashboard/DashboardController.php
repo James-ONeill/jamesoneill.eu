@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Dashboard;
 
 use App\Post;
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
-    public function show()
+    public function __invoke()
     {
         $posts = Post::published()->orderBy('published_at', 'DESC')->take(10)->get();
 

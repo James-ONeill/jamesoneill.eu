@@ -21,7 +21,12 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::post('logout', 'LoginController@logout')->name('auth.logout');
 });
 
-Route::get('dashboard', 'DashboardController@show')->middleware('auth');
+Route::group([
+    'middleware' => 'auth', 'prefix' => 'dashboard', 'namespace' => 'Dashboard'
+], function () {
+    Route::get('/', 'DashboardController');
+    Route::get('posts/new', 'PostsController@create');
+});
 
 Route::get('{year}/{month}/{day}/{title}', 'BlogController@show')->where([
     'year' => '[0-9]{4}', 'month' => '[0-9]{2}', 'date' => '[0-9]{2}'
