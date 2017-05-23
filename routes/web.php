@@ -26,6 +26,7 @@ Route::group([
 ], function () {
     Route::get('/', 'DashboardController');
     Route::get('posts/new', 'PostsController@create');
+    Route::post('posts', 'PostsController@store');
 });
 
 Route::get('{year}/{month}/{day}/{title}', 'BlogController@show')->where([
