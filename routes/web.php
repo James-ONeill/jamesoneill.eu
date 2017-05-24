@@ -25,6 +25,7 @@ Route::group([
     'middleware' => 'auth', 'prefix' => 'dashboard', 'namespace' => 'Dashboard'
 ], function () {
     Route::get('/', 'DashboardController');
+    Route::get('posts', 'PostsController@index');
     Route::get('posts/new', 'PostsController@create');
     Route::post('posts', 'PostsController@store');
 });

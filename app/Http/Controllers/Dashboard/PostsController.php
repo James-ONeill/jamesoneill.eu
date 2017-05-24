@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class PostsController extends Controller
 {
+    public function index()
+    {
+        return view('dashboard.posts.index');
+    }
+
     public function create()
     {
         return view('dashboard.posts.create');
