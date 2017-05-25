@@ -22,4 +22,13 @@ class EditPostTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /** @test */
+    function guests_cannot_view_the_posts_index()
+    {
+        $response = $this->get('/dashboard/posts');
+
+        $response->assertStatus(302);
+        $response->assertRedirect('/login');
+    }
 }
