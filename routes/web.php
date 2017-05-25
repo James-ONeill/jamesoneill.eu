@@ -25,9 +25,12 @@ Route::group([
     'middleware' => 'auth', 'prefix' => 'dashboard', 'namespace' => 'Dashboard'
 ], function () {
     Route::get('/', 'DashboardController');
+
     Route::get('posts', 'PostsController@index');
     Route::get('posts/new', 'PostsController@create');
     Route::post('posts', 'PostsController@store');
+    Route::get('posts/{post}/edit', 'PostsController@edit')->name('dashboard.posts.edit');
+    Route::put('posts/{post}', 'PostsController@update');
 });
 
 Route::get('{year}/{month}/{day}/{title}', 'BlogController@show')->where([

@@ -26,6 +26,24 @@ class PostsController extends Controller
         ]);
 
         $post = Post::create(request(['title', 'body']));
-        return redirect("/dashboard/posts/{$post->id}/edit");
+
+        return redirect()->route('dashboard.posts.edit', $post);
+    }
+
+    public function edit(Post $post)
+    {
+        return view('dashboard.posts.edit', ['post' => $post]);
+    }
+
+    public function update(Post $post)
+    {
+        $this->validate(request(), [
+            'title' => 'required',
+            'body' => 'nullable'
+        ]);
+
+        $post->update(request(['title', 'body']));
+
+        return redirect()->route('dashboard.posts.edit', $post);
     }
 }
