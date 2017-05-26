@@ -9,15 +9,9 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li><a href="#">New Post</a></li>
+                        <li><a href="/dashboard/posts">All Posts</a></li>
+                        <li><a href="/dashboard/posts/new">New Post</a></li>
                     </ul>
-                </li>
-
-                <li class="dropdown">
-                    <a href="#">
-                        PAGES
-                        <b class="caret"></b>
-                    </a>
                 </li>
             </ul>
 
