@@ -30,7 +30,7 @@ Route::group([
     Route::get('posts/new', 'PostsController@create');
     Route::post('posts', 'PostsController@store');
     Route::get('posts/{post}/edit', 'PostsController@edit')->name('dashboard.posts.edit');
-    Route::put('posts/{post}', 'PostsController@update');
+    Route::put('posts/{post}', 'PostsController@update')->name('dashboard.posts.update');
 });
 
 Route::get('{year}/{month}/{day}/{title}', 'BlogController@show')->where([
