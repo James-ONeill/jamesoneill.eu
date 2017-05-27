@@ -17,6 +17,25 @@ class Post extends Model
         return $this->published_at->format('/Y/m/d/') . str_slug($this->title);
     }
 
+    public function getPublicationDateAttribute()
+    {
+        return $this->published_at ? $this->published_at->format('Y-m-d') : null;
+    }
+
+    public function getPublicationTimeAttribute()
+    {
+        return $this->published_at ? $this->published_at->format('H:i') : null;
+    }
+
+    public function getPublicationStatusAttribute()
+    {
+        if ($this->published_at) {
+            return 'Published ' . $this->published_at->diffForHumans();
+        } else {
+            return 'Unpublished';
+        }
+    }
+
     public function markdown()
     {
         return (new ParsedownExtra)->text($this->body);
