@@ -5,6 +5,10 @@
         {!! csrf_field() !!}
         {!! method_field('PUT') !!}
 
+        @foreach($errors->all() as $error)
+            {{ $error }}
+        @endforeach
+
         <div class="row">
             <div class="col-sm-8">
                 <div class="panel panel-default">
@@ -56,9 +60,15 @@
                                 Save
                             </button>
 
-                            <button type="submit" class="btn btn-primary" name="publish" value="true">
-                                Save &amp; Publish
-                            </button>
+                            @if($post->published)
+                                <button type="submit" class="btn btn-danger" name="unpublish" value="true">
+                                    Unpublish
+                                </button>
+                            @else
+                                <button type="submit" class="btn btn-primary" name="publish" value="true">
+                                    Publish
+                                </button>
+                            @endif
                         </div>
                     </div>
                 </div>

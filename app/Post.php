@@ -27,6 +27,11 @@ class Post extends Model
         return $this->published_at ? $this->published_at->format('H:i') : null;
     }
 
+    public function getPublishedAttribute()
+    {
+        return $this->published_at && $this->published_at->subMinute()->isPast();
+    }
+
     public function getPublicationStatusAttribute()
     {
         if ($this->published_at) {

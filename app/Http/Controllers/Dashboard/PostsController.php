@@ -27,7 +27,7 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'nullable',
             'publication_date' => ['nullable', 'date'],
-            'publication_time' => ['required_with:publication_date', 'date_format:h:i'],
+            'publication_time' => ['required_with:publication_date', 'date_format:H:i'],
             'publish' => 'nullable'
         ]);
 
@@ -59,7 +59,7 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'nullable',
             'publication_date' => ['nullable', 'date'],
-            'publication_time' => ['required_with:publication_date', 'date_format:h:i']
+            'publication_time' => ['nullable', 'required_with:publication_date', 'date_format:H:i']
         ]);
 
         $publishedAt = null;
