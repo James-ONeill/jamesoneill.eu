@@ -62,9 +62,17 @@ class PostsController extends Controller
             'publication_time' => ['required_with:publication_date', 'date_format:h:i']
         ]);
 
-        $publishedAt = request()->has('publication_date') ? Carbon::parse(vsprintf('%s %s', request([
-            'publication_date', 'publication_time'
-        ]))) : null;
+        $publishedAt = null;
+
+        if (! request()->has('unpublish')) {
+            if (request()->has('publish')) {
+                $publishedAt = Carbon::now();
+            } else if (request()->has('publication_date')) {
+                $publishedAt = Carbon::parse(vsprintf('%s %s', request([
+                    'publication_date', 'publication_time'
+                ])));
+            }
+        }
 
         $post->update(array_merge(request(['title', 'body']), [
             'published_at' => $publishedAt
