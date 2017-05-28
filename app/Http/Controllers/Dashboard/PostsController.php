@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Post;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -24,10 +25,25 @@ class PostsController extends Controller
     {
         $this->validate(request(), [
             'title' => 'required',
-            'body' => 'nullable'
+            'body' => 'nullable',
+            'publication_date' => ['nullable', 'date'],
+            'publication_time' => ['required_with:publication_date', 'date_format:h:i'],
+            'publish' => 'nullable'
         ]);
 
-        $post = Post::create(request(['title', 'body']));
+        $publishedAt = null;
+
+        if (request()->has('publish')) {
+            $publishedAt = Carbon::now();
+        } else if (request()->has('publication_date')) {
+            $publishedAt = Carbon::parse(vsprintf('%s %s', request([
+                'publication_date', 'publication_time'
+            ])));
+        }
+
+        $post = Post::create(array_merge(request(['title', 'body']), [
+            'published_at' => $publishedAt
+        ]));
 
         return redirect()->route('dashboard.posts.edit', $post);
     }
@@ -41,10 +57,18 @@ class PostsController extends Controller
     {
         $this->validate(request(), [
             'title' => 'required',
-            'body' => 'nullable'
+            'body' => 'nullable',
+            'publication_date' => ['nullable', 'date'],
+            'publication_time' => ['required_with:publication_date', 'date_format:h:i']
         ]);
 
-        $post->update(request(['title', 'body']));
+        $publishedAt = request()->has('publication_date') ? Carbon::parse(vsprintf('%s %s', request([
+            'publication_date', 'publication_time'
+        ]))) : null;
+
+        $post->update(array_merge(request(['title', 'body']), [
+            'published_at' => $publishedAt
+        ]));
 
         return redirect()->route('dashboard.posts.edit', $post);
     }

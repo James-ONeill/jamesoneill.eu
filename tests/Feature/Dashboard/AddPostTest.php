@@ -4,6 +4,7 @@ namespace Tests\Feature\Dashboard;
 
 use App\Post;
 use App\User;
+use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -15,7 +16,9 @@ class AddPostTest extends TestCase
     {
         return array_merge([
             'title' => 'Writing Tests in Laravel',
-            'body' => 'Testing your Laravel application is good...'
+            'body' => 'Testing your Laravel application is good...',
+            'publication_date' => '2000-01-01',
+            'publication_time' => '12:34'
         ], $overrides);
     }
 
@@ -61,6 +64,7 @@ class AddPostTest extends TestCase
 
             $this->assertEquals('Writing Tests in Laravel', $post->title);
             $this->assertEquals('Testing your Laravel application is good...', $post->body);
+            $this->assertEquals('2000-01-01 12:34', $post->published_at->format('Y-m-d H:i'));
         });
     }
 
@@ -103,6 +107,86 @@ class AddPostTest extends TestCase
             $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
 
             $this->assertNull($post->body);
+        });
+    }
+
+    /** @test */
+    function publication_date_is_optional()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->from('/dashboard/posts/new')->post(
+            '/dashboard/posts', $this->validParams(['publication_date' => ''])
+        );
+
+        tap(Post::first(), function ($post) use ($response) {
+            $response->assertStatus(302);
+            $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
+
+            $this->assertNull($post->published_at);
+        });
+    }
+
+    /** @test */
+    function publication_date_must_be_valid()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->from('/dashboard/posts/new')->post(
+            '/dashboard/posts', $this->validParams(['publication_date' => 'not a valid date'])
+        );
+
+        $response->assertStatus(302);
+        $response->assertRedirect('/dashboard/posts/new');
+        $response->assertSessionHasErrors('publication_date');
+        $this->assertEquals(0, Post::count());
+    }
+
+    /** @test */
+    function publication_time_is_required_with_publication_date()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->from('/dashboard/posts/new')->post(
+            '/dashboard/posts', $this->validParams(['publication_time' => ''])
+        );
+
+        $response->assertStatus(302);
+        $response->assertRedirect('/dashboard/posts/new');
+        $response->assertSessionHasErrors('publication_time');
+        $this->assertEquals(0, Post::count());
+    }
+
+    /** @test */
+    function publication_time_must_be_valid()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->from('/dashboard/posts/new')->post(
+            '/dashboard/posts', $this->validParams(['publication_time' => 'not a valid time'])
+        );
+
+        $response->assertStatus(302);
+        $response->assertRedirect('/dashboard/posts/new');
+        $response->assertSessionHasErrors('publication_time');
+        $this->assertEquals(0, Post::count());
+    }
+
+    /** @test */
+    function publishing_a_post_immediately()
+    {
+        Carbon::setTestNow('2001-01-01 00:00');
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->from('/dashboard/posts/new')->post(
+            '/dashboard/posts', $this->validParams(['publish' => true])
+        );
+
+        tap(Post::first(), function ($post) use ($response) {
+            $response->assertStatus(302);
+            $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
+
+            $this->assertEquals('2001-01-01 00:00', $post->published_at->format('Y-m-d H:i'));
         });
     }
 }
