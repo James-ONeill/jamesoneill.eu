@@ -9,7 +9,7 @@ class HomePageController extends Controller
     public function show()
     {
         return view('home', [
-            'posts' => Post::orderBy('published_at', 'desc')->get()
+            'posts' => Post::published()->orderBy('published_at', 'desc')->get()
         ]);
     }
 }

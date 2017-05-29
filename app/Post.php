@@ -55,6 +55,22 @@ class Post extends Model
 
     public function scopePublished($query)
     {
-        return $query->where('published_at', '<=', Carbon::now());
+        return $query->where('published_at', '<=', Carbon::now()->subMinute());
+    }
+
+    public function scopeUnpublished($query)
+    {
+        return $query->whereNull('published_at')
+                     ->orWhere('published_at', '>', Carbon::now()->subMinute());
+    }
+
+    public function scopeScheduled($query)
+    {
+        return $query->where('published_at', '>', Carbon::now()->subMinute());
+    }
+
+    public function scopeUnscheduled($query)
+    {
+        return $query->whereNull('published_at');
     }
 }
