@@ -1,4 +1,16 @@
+$body-bg: #EBEBEB;
+$panel-default-heading-bg: #fff;
+$panel-default-border: none;
+
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.panel {
+  box-shadow: 0 2px 3px rgba(0,0,0,.16);
+}
+
+.panel-default > .panel-body {
+  background-color: #FAFAFA;
+}
 
 .navbar-default {
   border-bottom: 0;
