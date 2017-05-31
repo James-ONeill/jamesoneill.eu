@@ -1,5 +1,6 @@
 $body-bg: #EBEBEB;
 $panel-default-heading-bg: #fff;
+$panel-footer-bg: #fff;
 $panel-default-border: none;
 
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
@@ -10,6 +11,10 @@ $panel-default-border: none;
 
 .panel-default > .panel-body {
   background-color: #FAFAFA;
+}
+
+.panel-footer {
+  border-top: 0;
 }
 
 .navbar-default {
