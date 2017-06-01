@@ -1,10 +1,11 @@
 @extends('layouts.dashboard')
 
 @section('content')
-    <div class="panel panel-default">
+    @component('components.panel')
         <div class="panel-heading">
             <h4>Posts</h4>
         </div>
+
         <table class="table">
             <thead>
                 <tr>
@@ -33,5 +34,5 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
+    @endcomponent
 @endsection

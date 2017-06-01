@@ -9,9 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Log In</div>
-
+                @component('components.panel', ['heading' => 'Log In'])
                     <div class="panel-body">
                         @if($errors->any())
                             <div class="alert alert-danger">
@@ -47,7 +45,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                @endcomponent
             </div>
         </div>
     </div>

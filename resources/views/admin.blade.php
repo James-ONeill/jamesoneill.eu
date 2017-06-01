@@ -5,10 +5,10 @@
         <div class="col-sm-10 col-sm-offset-1">
 
             @if($drafts->count())
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                @component('components.panel')
+                    @slot('heading')
                         <h4>Drafts</h4>
-                    </div>
+                    @endslot
 
                     <div class="panel-body">
                         @foreach($drafts as $post)
@@ -17,14 +17,14 @@
                             </div>
                         @endforeach
                     </div>
-                </div>
+                @endcomponent
             @endif
 
             @if($scheduledPosts->count())
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                @component('components.panel')
+                    @slot('heading')
                         <h4>Scheduled Posts</h4>
-                    </div>
+                    @endslot
 
                     <div class="panel-body">
                         @foreach($scheduledPosts as $post)
@@ -34,14 +34,14 @@
                             </div>
                         @endforeach
                     </div>
-                </div>
+                @endcomponent
             @endif
 
             @if($recentPosts->count())
-                <div class="panel panel-default">
-                    <div class="panel-heading">
+                @component('components.panel')
+                    @slot('heading')
                         <h4>Recent Posts</h4>
-                    </div>
+                    @endslot
 
                     <div class="panel-body">
                         @foreach($recentPosts as $post)
@@ -51,7 +51,7 @@
                             </div>
                         @endforeach
                     </div>
-                </div>
+                @endcomponent
             @endif
         </div>
     </div>

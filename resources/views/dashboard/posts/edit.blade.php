@@ -11,7 +11,7 @@
 
         <div class="row">
             <div class="col-sm-8">
-                <div class="panel panel-default">
+                @component('components.panel')
                     <div class="panel-heading">
                         <h4>New Post</h4>
                     </div>
@@ -27,11 +27,11 @@
                             <textarea name="body" rows="15" class="form-control">{{ old('body', $post->body) }}</textarea>
                         </div>
                     </div>
-                </div>
+                @endcomponent
             </div>
 
             <div class="col-sm-4">
-                <div class="panel panel-default">
+                @component('components.panel')
                     <div class="panel-heading">
                         <strong>Publish</strong>
                     </div>
@@ -71,7 +71,7 @@
                             @endif
                         </div>
                     </div>
-                </div>
+                @endcomponent
             </div>
         </div>
     </form>
