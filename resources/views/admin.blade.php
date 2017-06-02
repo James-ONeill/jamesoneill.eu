@@ -10,13 +10,7 @@
                         <h4>Drafts</h4>
                     @endslot
 
-                    <div class="panel-body">
-                        @foreach($drafts as $post)
-                            <div>
-                                {{ $post->title }}
-                            </div>
-                        @endforeach
-                    </div>
+                    @include('dashboard.posts.table', ['posts' => $drafts])
                 @endcomponent
             @endif
 
@@ -26,14 +20,7 @@
                         <h4>Scheduled Posts</h4>
                     @endslot
 
-                    <div class="panel-body">
-                        @foreach($scheduledPosts as $post)
-                            <div>
-                                {{ $post->published_at->format('d/m/Y') }}
-                                {{ $post->title }}
-                            </div>
-                        @endforeach
-                    </div>
+                    @include('dashboard.posts.table', ['posts' => $scheduledPosts])
                 @endcomponent
             @endif
 
@@ -43,14 +30,7 @@
                         <h4>Recent Posts</h4>
                     @endslot
 
-                    <div class="panel-body">
-                        @foreach($recentPosts as $post)
-                            <div>
-                                {{ $post->published_at->format('d/m/Y') }}
-                                {{ $post->title }}
-                            </div>
-                        @endforeach
-                    </div>
+                    @include('dashboard.posts.table', ['posts' => $recentPosts])
                 @endcomponent
             @endif
         </div>
