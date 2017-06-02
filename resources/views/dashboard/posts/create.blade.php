@@ -12,6 +12,18 @@
                     </div>
 
                     <div class="panel-body">
+                        @if($errors->any())
+                            <div class="alert alert-danger" role="alert">
+                                <strong>Whoops!</strong> There were some problems with your input.
+
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <div class="form-group">
                             <label for="title" class="control-label">Title</label>
                             <input type="text" name="title" value="{{ old('title') }}" class="form-control">
