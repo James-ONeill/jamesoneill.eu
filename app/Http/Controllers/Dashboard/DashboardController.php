@@ -9,7 +9,7 @@ class DashboardController extends Controller
 {
     public function __invoke()
     {
-        return view('admin', [
+        return view('dashboard.index', [
             'recentPosts' => Post::published()->orderBy('published_at', 'DESC')->take(10)->get(),
             'scheduledPosts' => Post::scheduled()->orderBy('published_at', 'DESC')->take(10)->get(),
             'drafts' => Post::unscheduled()->orderBy('published_at', 'DESC')->take(10)->get()
