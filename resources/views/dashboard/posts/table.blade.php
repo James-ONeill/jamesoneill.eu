@@ -15,7 +15,7 @@
         @foreach($posts as $post)
             <tr>
                 <td>
-                    <strong>{{ $post->title }}</strong>
+                    <strong class="text-red">{{ $post->title }}</strong>
                 </td>
                 <td>
                     {{ $post->publication_status }}

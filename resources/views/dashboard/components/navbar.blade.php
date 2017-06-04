@@ -40,7 +40,7 @@
 
                         <ul class="dropdown-menu">
                             <li>
-                                <form method="POST" action="logout" id="logout">
+                                <form method="POST" action="/logout" id="logout">
                                     {!! csrf_field() !!}
                                 </form>
 
