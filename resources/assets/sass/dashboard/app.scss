@@ -3,8 +3,6 @@
 @import "panels";
 @import "navbar";
 @import "footer";
-
-.form-control {
-  border-width: 2px;
-  resize: none;
-}
+@import "forms";
+@import "tables";
+@import "utilities";
