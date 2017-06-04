@@ -12,4 +12,10 @@
     <div class="container">
         @yield('content')
     </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">&copy; James O'Neill {{ date('Y') }} </p>
+        </div>
+    </footer>
 </body>
