@@ -1,0 +1,18 @@
+.blog-post {
+  font-family: $font-family-sans-serif;
+  font-size: 14px;
+  margin-bottom: 15px;
+
+
+  h2 {
+    font-size: 22px;
+    margin: 5px 0 0;
+    a {
+      color: black;
+    }
+  }
+}
+
+.post__body {
+  margin-top: 50px;
+}

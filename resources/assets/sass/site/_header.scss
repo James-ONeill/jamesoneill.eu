@@ -1,0 +1,14 @@
+.header {
+  padding: 20px 0;
+  border-bottom: 1px solid $gray-lighter;
+}
+
+.header__title {
+  font-size: 50px;
+}
+
+.gravatar {
+  border-radius: 50%;
+  padding: 5px;
+  border: 1px solid #eee;
+}
