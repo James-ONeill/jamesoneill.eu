@@ -5,7 +5,7 @@
                 Title
             </th>
             <th>
-                Published
+                Status
             </th>
             <th></th>
         </tr>
