@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/dashboard.css">
     <script src="/js/app.js"></script>
 </head>
