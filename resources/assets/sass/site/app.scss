@@ -4,6 +4,10 @@
 // Bootstrap
 @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
 
+body {
+  border-top: 4px solid #ff0101;
+}
+
 @import "type";
 @import "header";
 @import "footer";

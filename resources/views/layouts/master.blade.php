@@ -8,22 +8,25 @@
         <title>James O'Neill</title>
         @include('analytics.google')
 
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/css/site.css">
     </head>
 
     <body>
-        <div class="container">
-            @section('header')
-                <header class="header">
-                    <div class="text-center">
-                        <img class="gravatar"  src="https://www.gravatar.com/avatar/{{ md5('james@levelupdevelopment.co.uk') }}?s=80">
+        @section('header')
+            <header class="header">
+                <div class="container">
+                    <div class="col-xs-12">
+                        <h1 class="header__title">
+                            <img class="gravatar"  src="https://www.gravatar.com/avatar/{{ md5('james@levelupdevelopment.co.uk') }}?s=80">
+                            <a href="/">James O'Neill</a>
+                        </h1>
                     </div>
+                </div>
+            </header>
+        @show
+        <div class="container">
 
-                    <h1 class="header__title text-center">
-                        <a href="/">James O'Neill</a>
-                    </h1>
-                </header>
-            @show
 
             <main>
                 @yield('content')

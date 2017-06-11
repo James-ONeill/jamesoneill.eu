@@ -1,11 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <h1 class="page-title text-center">About</h1>
-
-    <p>
-        I'm a software developer from Bristol in the South West of England.
-    </p>
+    <p>I'm a software developer from Bristol in the South West of England.</p>
 
     <p>
         Day to day I mostly work with Laravel and React. This is my first go at a
@@ -19,14 +15,16 @@
         Also you could <a href="https://www.facebook.com/ambertibetanterrier/">like my Dog on Facebook.</a>
     </p>
 
-    <h1 class="text-center">Blog</h1>
+    @if($posts->count())
+        <h2 class="h3">Blog</h1>
 
-    <ul class="list-unstyled">
-        @foreach($posts as $post)
-            <li class="blog-post">
-                {{ $post->published_at->format('jS F Y') }}
-                <h2><a href="{{ $post->url() }}">{{ $post->title }}</a></h2>
-            </li>
-        @endforeach
-    </ul>
+        <ul class="list-unstyled">
+            @foreach($posts as $post)
+                <li class="blog-post">
+                    {{ $post->published_at->format('jS F Y') }}
+                    <h2><a href="{{ $post->url() }}">{{ $post->title }}</a></h2>
+                </li>
+            @endforeach
+        </ul>
+    @endif
 @endsection
