@@ -7,9 +7,9 @@
         <div class="row">
             <div class="col-sm-8">
                 @component('components.panel')
-                    <div class="panel-heading">
-                        <h4>New Post</h4>
-                    </div>
+                    @slot('heading')
+                        New Post
+                    @endslot
 
                     <div class="panel-body">
                         @if($errors->any())
@@ -39,9 +39,9 @@
 
             <div class="col-sm-4">
                 @component('components.panel')
-                    <div class="panel-heading">
-                        <strong>Publish</strong>
-                    </div>
+                    @slot('heading')
+                        Publish
+                    @endslot
 
                     <div class="panel-body">
                         @component('components.form-group', ['name' => 'publication_date'])
@@ -61,7 +61,7 @@
                         @endcomponent
                     </div>
 
-                    <div class="panel-footer clearfix">
+                    @slot('footer')
                         <div class="btn-group pull-right">
                             <button type="submit" class="btn btn-default">
                                 Save
@@ -71,7 +71,7 @@
                                 Save &amp; Publish
                             </button>
                         </div>
-                    </div>
+                    @endslot
                 @endcomponent
             </div>
         </div>

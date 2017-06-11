@@ -6,6 +6,6 @@
     {{ $slot }}
 
     @if(isset($footer))
-        <div class="panel-footer">{{ $footer }}</div>
+        <div class="panel-footer clearfix">{{ $footer }}</div>
     @endif
 </div>
