@@ -26,8 +26,6 @@
             </header>
         @show
         <div class="container">
-
-
             <main>
                 @yield('content')
             </main>

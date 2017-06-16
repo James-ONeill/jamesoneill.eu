@@ -11,6 +11,7 @@
                 @if(auth()->check())
                     <li>
                         <a href="/dashboard">
+
                             DASHBOARD
                         </a>
                     </li>
