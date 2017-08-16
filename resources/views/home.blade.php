@@ -16,13 +16,13 @@
     </p>
 
     @if($posts->count())
-        <h2 class="h3">Blog</h1>
-
-        <ul class="list-unstyled">
+        <ul class="lsn mt4">
             @foreach($posts as $post)
-                <li class="blog-post">
-                    {{ $post->published_at->format('jS F Y') }}
-                    <h2><a href="{{ $post->url() }}">{{ $post->title }}</a></h2>
+                <li class="blog-post mb2">
+                    <div>{{ $post->published_at->format('jS F Y') }}</div>
+                    <h2 class="mv0">
+                        <a class="gray2 hover:gray2" href="{{ $post->url() }}">{{ $post->title }}</a>
+                    </h2>
                 </li>
             @endforeach
         </ul>

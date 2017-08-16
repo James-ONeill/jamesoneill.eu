@@ -1,0 +1,367 @@
+a,
+abbr,
+acronym,
+address,
+applet,
+article,
+aside,
+audio,
+b,
+big,
+blockquote,
+body,
+canvas,
+caption,
+center,
+cite,
+code,
+dd,
+del,
+details,
+dfn,
+dialog,
+div,
+dl,
+dt,
+em,
+embed,
+fieldset,
+figcaption,
+figure,
+font,
+footer,
+form,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+header,
+hgroup,
+hr,
+html,
+i,
+iframe,
+img,
+ins,
+kbd,
+label,
+legend,
+li,
+main,
+mark,
+menu,
+meter,
+nav,
+object,
+ol,
+output,
+p,
+pre,
+progress,
+q,
+rp,
+rt,
+ruby,
+s,
+samp,
+section,
+small,
+span,
+strike,
+strong,
+sub,
+summary,
+sup,
+table,
+tbody,
+td,
+tfoot,
+th,
+thead,
+time,
+tr,
+tt,
+u,
+ul,
+var,
+video,
+xmp {
+  border: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  font-size: 1rem;
+  height: 100%;
+}
+b,
+strong {
+  font-weight: bold;
+}
+img {
+  color: transparent;
+  font-size: 0;
+  vertical-align: middle;
+  -ms-interpolation-mode: bicubic;
+}
+body {
+  color: #333;
+  font-family: "Merriweather Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+}
+a {
+  color: #ff0101;
+  text-decoration: none;
+}
+a:hover {
+  color: #cd0000;
+  text-decoration: underline;
+}
+p {
+  margin: 1rem 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 1rem 0;
+}
+.container {
+  margin: 0 auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
+}
+@media screen and (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .container {
+    max-width: 980px;
+  }
+}
+.constrain-lg {
+  -ms-flex-preferred-size: 40rem;
+      flex-basis: 40rem;
+  max-width: 40rem;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.bgc--gray1 {
+  background-color: #f7f7f7;
+}
+.bgc--red {
+  background-color: #ff0101;
+}
+.border-t {
+  border-top: 1px solid #fff;
+}
+.border-l {
+  border-left: 1px solid #fff;
+}
+.border-r {
+  border-right: 1px solid #fff;
+}
+.border-b {
+  border-bottom: 1px solid #fff;
+}
+.border-v {
+  border-bottom: 1px solid #fff;
+  border-top: 1px solid #fff;
+}
+.border-h {
+  border-left: 1px solid #fff;
+  border-right: 1px solid #fff;
+}
+.bw1 {
+  border-width: 1px;
+}
+.bw2 {
+  border-width: 2px;
+}
+.bw3 {
+  border-width: 4px;
+}
+.bw4 {
+  border-width: 6px;
+}
+.bc-red {
+  border-color: #ff0101;
+}
+.bc-black {
+  border-color: #000;
+}
+.bc-gray1 {
+  border-color: #f7f7f7;
+}
+.rounded {
+  border-radius: 50%;
+}
+.red {
+  color: #ff0101;
+}
+.black {
+  color: #000;
+}
+.gray1 {
+  color: #f7f7f7;
+}
+.gray2 {
+  color: #333;
+}
+.white {
+  color: #fff;
+}
+.hover\:black:hover {
+  color: #000;
+}
+.hover\:gray1:hover {
+  color: #f7f7f7;
+}
+.hover\:gray2:hover {
+  color: #333;
+}
+.hover\:white:hover {
+  color: #fff;
+}
+.lsn {
+  list-style: none;
+}
+.pt1 {
+  padding-top: 5px;
+}
+.pt2 {
+  padding-top: 10px;
+}
+.mt1 {
+  margin-top: 5px;
+}
+.mt2 {
+  margin-top: 10px;
+}
+.mt3 {
+  margin-top: 20px;
+}
+.mt4 {
+  margin-top: 40px;
+}
+.pt3 {
+  padding-top: 20px;
+}
+.pt4 {
+  padding-top: 40px;
+}
+.pb1 {
+  padding-bottom: 5px;
+}
+.pb2 {
+  padding-bottom: 10px;
+}
+.pb3 {
+  padding-bottom: 20px;
+}
+.pb4 {
+  padding-bottom: 40px;
+}
+.pv1 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.pv2 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.pv3 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.pv4 {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.mt0 {
+  margin-top: 0;
+}
+.mt1 {
+  margin-top: 5px;
+}
+.mt2 {
+  margin-top: 10px;
+}
+.mt3 {
+  margin-top: 20px;
+}
+.mt4 {
+  margin-top: 40px;
+}
+.mb0 {
+  margin-bottom: 0;
+}
+.mb1 {
+  margin-bottom: 5px;
+}
+.mb2 {
+  margin-bottom: 10px;
+}
+.mb3 {
+  margin-bottom: 20px;
+}
+.mb4 {
+  margin-bottom: 40px;
+}
+.mv0 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+.mv1 {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.mv2 {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.mv3 {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.mv4 {
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+.mh-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.tdn {
+  text-decoration: none;
+}
+.hover\:tdn:hover {
+  text-decoration: none;
+}
