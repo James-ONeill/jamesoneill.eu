@@ -9,7 +9,7 @@
             <div class="col-sm-8">
                 @component('components.panel')
                     @slot('heading')
-                        New Post
+                        Edit Post
                     @endslot
 
                     <div class="panel-body">
