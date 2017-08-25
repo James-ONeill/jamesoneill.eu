@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>James O'Neill | Software Developer &amp; Human</title>
+        <title>{{ $title or "James O'Neill | Software Developer & Human" }}</title>
         @include('analytics.google')
 
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet">
