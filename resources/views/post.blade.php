@@ -6,6 +6,11 @@
     <meta name="twitter:title" content="{{ $post->title }}">
     <meta name="twitter:creator" content="@jamesoneill83">
     <meta name="twitter:description" content="Description coming soon...">
+
+    <meta property="og:site_name" content="{{ config('app.name') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="blog"/>
+    <meta property="og:title" content="{{ $post->title }}"/>
 @endsection
 
 @section('content')
