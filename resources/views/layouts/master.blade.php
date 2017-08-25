@@ -10,6 +10,7 @@
 
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github-gist.min.css">
         <link rel="stylesheet" type="text/css" href="{{ mix('/css/utilities.css') }}">
     </head>
 
@@ -43,5 +44,9 @@
                 </div>
             @show
         </div>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </body>
 </html>
