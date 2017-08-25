@@ -4,8 +4,9 @@
     <p>I'm a software developer from Bristol in the South West of England.</p>
 
     <p>
-        Day to day I mostly work with Laravel and React. This is my first go at a
-        personal site and I'm not quite sure what I'm going to do with it yet.
+        Day to day I mostly work with Laravel and React. This site is your
+        source of information for whatever I happen to be up to, be it related
+        to software or any of my other interests.
     </p>
 
     <p>
@@ -16,7 +17,7 @@
     </p>
 
     @if($posts->count())
-        <ul class="lsn mt4">
+        <ul class="lsn mt4 pl0">
             @foreach($posts as $post)
                 <li class="blog-post mb2">
                     <div>{{ $post->published_at->format('jS F Y') }}</div>

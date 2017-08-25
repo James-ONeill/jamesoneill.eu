@@ -266,18 +266,6 @@ li {
 .pt2 {
   padding-top: 10px;
 }
-.mt1 {
-  margin-top: 5px;
-}
-.mt2 {
-  margin-top: 10px;
-}
-.mt3 {
-  margin-top: 20px;
-}
-.mt4 {
-  margin-top: 40px;
-}
 .pt3 {
   padding-top: 20px;
 }
@@ -311,6 +299,9 @@ li {
 .pv4 {
   padding-top: 40px;
   padding-bottom: 40px;
+}
+.pl0 {
+  padding-left: 0;
 }
 .mt0 {
   margin-top: 0;
