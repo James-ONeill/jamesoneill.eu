@@ -23,7 +23,17 @@ class PostTest extends TestCase
     }
 
     /** @test */
-    function getting_the_post_description()
+    function getting_the_body_html()
+    {
+        $post = $post = factory(Post::class)->make([
+            'body' => '[Example Link](http://example.com)'
+        ]);
+
+        $this->assertEquals('<p><a href="http://example.com">Example Link</a></p>', $post->body_html);
+    }
+
+    /** @test */
+    function getting_the_description()
     {
         $post = factory(Post::class)->make([
             'body' =>

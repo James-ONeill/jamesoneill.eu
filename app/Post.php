@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Carbon\Carbon;
 use ParsedownExtra;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,7 +18,12 @@ class Post extends Model
 
     public function getDescriptionAttribute()
     {
-        return strip_tags(explode(PHP_EOL, $this->markdown())[0]);
+        return strip_tags(explode(PHP_EOL, $this->body_html)[0]);
+    }
+
+    public function getBodyHtmlAttribute()
+    {
+        return (new ParsedownExtra)->text($this->body);
     }
 
     public function getPublicationDateAttribute()
@@ -44,11 +48,6 @@ class Post extends Model
         } else {
             return 'Unpublished';
         }
-    }
-
-    public function markdown()
-    {
-        return (new ParsedownExtra)->text($this->body);
     }
 
     public function save(array $options = [])
