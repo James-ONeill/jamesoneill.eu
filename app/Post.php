@@ -17,6 +17,11 @@ class Post extends Model
         return $this->published_at->format('/Y/m/d/') . str_slug($this->title);
     }
 
+    public function getDescriptionAttribute()
+    {
+        return strip_tags(explode(PHP_EOL, $this->markdown())[0]);
+    }
+
     public function getPublicationDateAttribute()
     {
         return $this->published_at ? $this->published_at->format('Y-m-d') : null;

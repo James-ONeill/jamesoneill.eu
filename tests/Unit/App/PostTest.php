@@ -12,7 +12,7 @@ class PostTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function getting_the_post_url()
+    function getting_the_post_url()
     {
         $post = factory(Post::class)->create([
             'published_at' => Carbon::parse('2001-01-01'),
@@ -20,5 +20,17 @@ class PostTest extends TestCase
         ]);
 
         $this->assertEquals('/2001/01/01/hello-world', $post->fresh()->url());
+    }
+
+    /** @test */
+    function getting_the_post_description()
+    {
+        $post = factory(Post::class)->make([
+            'body' =>
+                "In West Philadelphia born and raised
+                On the playground was where I spent most of my days"
+        ]);
+
+        $this->assertEquals('In West Philadelphia born and raised', $post->description);
     }
 }

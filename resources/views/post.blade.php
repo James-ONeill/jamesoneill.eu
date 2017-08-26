@@ -5,7 +5,7 @@
     <meta name="twitter:site" content="@jamesoneill83">
     <meta name="twitter:title" content="{{ $post->title }}">
     <meta name="twitter:creator" content="@jamesoneill83">
-    <meta name="twitter:description" content="Description coming soon...">
+    <meta name="twitter:description" content="{{ $post->description }}">
 
     <meta property="og:site_name" content="{{ config('app.name') }}">
     <meta property="og:url" content="{{ url()->current() }}">
