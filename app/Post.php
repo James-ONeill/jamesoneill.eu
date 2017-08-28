@@ -50,6 +50,11 @@ class Post extends Model
         }
     }
 
+    public function setThumbnailUrlAttribute($value)
+    {
+        $this->attributes['thumbnail_url'] = url(str_replace('public/', '', $value));
+    }
+
     public function save(array $options = [])
     {
         $this->slug = str_slug($this->title);

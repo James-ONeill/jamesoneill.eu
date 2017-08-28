@@ -6,6 +6,8 @@ use App\Post;
 use App\User;
 use Carbon\Carbon;
 use Tests\TestCase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class EditPostTest extends TestCase
@@ -17,6 +19,7 @@ class EditPostTest extends TestCase
         return array_merge([
             'title' => 'Writing Great Tests in Laravel',
             'body' => 'Testing your Laravel application **really** is good...',
+            'thumbnail' => UploadedFile::fake()->image('thumbnail.jpg'),
             'publication_date' => '2001-01-01',
             'publication_time' => '12:34'
         ], $overrides);
@@ -79,6 +82,7 @@ class EditPostTest extends TestCase
     /** @test */
     function editing_a_valid_post()
     {
+        Storage::fake('local');
         $this->disableExceptionHandling();
 
         $user = factory(User::class)->create();
@@ -101,6 +105,7 @@ class EditPostTest extends TestCase
             $this->assertEquals('Writing Great Tests in Laravel', $post->title);
             $this->assertEquals('Testing your Laravel application **really** is good...', $post->body);
             $this->assertEquals('2001-01-01 12:34', $post->published_at->format('Y-m-d H:i'));
+            Storage::assertExists($post->thumbnail_url);
         });
     }
 
@@ -170,6 +175,70 @@ class EditPostTest extends TestCase
             $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
             $this->assertEquals('Writing Great Tests in Laravel', $post->title);
             $this->assertNull($post->body);
+        });
+    }
+
+    /** @test */
+    function thumbnail_is_optional()
+    {
+        $user = factory(User::class)->create();
+        $post = factory(Post::class)->create([
+            'thumbnail_url' => 'existing-thumbnail.jpg'
+        ]);
+
+        $this->assertEquals('existing-thumbnail.jpg', $post->thumbnail_url);
+        $response = $this->from("/dashboard/posts/{$post->id}/edit")->actingAs($user)->put(
+            "/dashboard/posts/{$post->id}", $this->validParams(['thumbnail' => null])
+        );
+
+        tap($post->fresh(), function ($post) use ($response) {
+            $response->assertStatus(302);
+            $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
+            $this->assertEquals('existing-thumbnail.jpg', $post->thumbnail_url);
+        });
+    }
+
+    /** @test */
+    function thumbnail_must_be_a_file()
+    {
+        $user = factory(User::class)->create();
+        $post = factory(Post::class)->create([
+            'thumbnail_url' => 'existing-thumbnail.jpg'
+        ]);
+
+        $this->assertEquals('existing-thumbnail.jpg', $post->thumbnail_url);
+        $response = $this->from("/dashboard/posts/{$post->id}/edit")->actingAs($user)->put(
+            "/dashboard/posts/{$post->id}", $this->validParams(['thumbnail' => 'Not a file.'])
+        );
+
+        tap($post->fresh(), function ($post) use ($response) {
+            $response->assertStatus(302);
+            $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
+            $response->assertSessionHasErrors('thumbnail');
+            $this->assertEquals('existing-thumbnail.jpg', $post->thumbnail_url);
+        });
+    }
+
+    /** @test */
+    function thumbnail_must_be_an_image()
+    {
+        $user = factory(User::class)->create();
+        $post = factory(Post::class)->create([
+            'thumbnail_url' => 'existing-thumbnail.jpg'
+        ]);
+
+        $this->assertEquals('existing-thumbnail.jpg', $post->thumbnail_url);
+        $response = $this->from("/dashboard/posts/{$post->id}/edit")->actingAs($user)->put(
+            "/dashboard/posts/{$post->id}", $this->validParams([
+                'thumbnail' => UploadedFile::fake()->image('thumbnail.pdf')
+            ])
+        );
+
+        tap($post->fresh(), function ($post) use ($response) {
+            $response->assertStatus(302);
+            $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
+            $response->assertSessionHasErrors('thumbnail');
+            $this->assertEquals('existing-thumbnail.jpg', $post->thumbnail_url);
         });
     }
 

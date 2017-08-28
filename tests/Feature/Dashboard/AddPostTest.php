@@ -6,6 +6,8 @@ use App\Post;
 use App\User;
 use Carbon\Carbon;
 use Tests\TestCase;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class AddPostTest extends TestCase
@@ -17,6 +19,7 @@ class AddPostTest extends TestCase
         return array_merge([
             'title' => 'Writing Tests in Laravel',
             'body' => 'Testing your Laravel application is good...',
+            'thumbnail' => UploadedFile::fake()->image('thumbnail.jpg'),
             'publication_date' => '2000-01-01',
             'publication_time' => '12:34'
         ], $overrides);
@@ -50,6 +53,7 @@ class AddPostTest extends TestCase
     /** @test */
     function adding_a_valid_post()
     {
+        Storage::fake('local');
         $this->disableExceptionHandling();
 
         $user = factory(User::class)->create();
@@ -65,6 +69,7 @@ class AddPostTest extends TestCase
             $this->assertEquals('Writing Tests in Laravel', $post->title);
             $this->assertEquals('Testing your Laravel application is good...', $post->body);
             $this->assertEquals('2000-01-01 12:34', $post->published_at->format('Y-m-d H:i'));
+            Storage::assertExists($post->thumbnail_url);
         });
     }
 
@@ -108,6 +113,57 @@ class AddPostTest extends TestCase
 
             $this->assertNull($post->body);
         });
+    }
+
+    /** @test */
+    function thumbnail_is_optional()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->from('/dashboard/posts/new')->post(
+            '/dashboard/posts', $this->validParams(['thumbnail' => null])
+        );
+
+        tap(Post::first(), function ($post) use ($response) {
+            $response->assertStatus(302);
+            $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
+
+            $this->assertNull($post->thumbnail_url);
+        });
+    }
+
+    /** @test */
+    function thumbnail_must_be_a_file()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->from('/dashboard/posts/new')->post(
+            '/dashboard/posts', $this->validParams(['thumbnail' => 'Not a file.'])
+        );
+
+        $response->assertStatus(302);
+        $response->assertRedirect('/dashboard/posts/new');
+        $response->assertSessionHasErrors('thumbnail');
+        $this->assertEquals(0, Post::count());
+    }
+
+    /** @test */
+    function thumbnail_must_be_an_image()
+    {
+        Storage::fake('local');
+
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->from('/dashboard/posts/new')->post(
+            '/dashboard/posts', $this->validParams([
+                'thumbnail' => UploadedFile::fake()->create('thumbnail.pdf')
+            ])
+        );
+
+        $response->assertStatus(302);
+        $response->assertRedirect('/dashboard/posts/new');
+        $response->assertSessionHasErrors('thumbnail');
+        $this->assertEquals(0, Post::count());
     }
 
     /** @test */
