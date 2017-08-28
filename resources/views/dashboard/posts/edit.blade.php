@@ -41,9 +41,11 @@
             <div class="col-sm-4">
                 @component('components.panel', ['heading' => 'Thumbnail Image'])
                     <div class="panel-body">
-                        <div class="form-group">
-                            <img src="{{ url($post->thumbnail_url) }}" alt="Current Thumbnail"  class="img-responsive">
-                        </div>
+                        @if($post->thumbnail_url)
+                            <div class="form-group">
+                                <img src="{{ $post->thumbnail_url }}" alt="Current Thumbnail"  class="img-responsive">
+                            </div>
+                        @endif
 
                         @component('components.form-group', ['name' => 'thumbnail'])
                             <input type="file" name="thumbnail">
