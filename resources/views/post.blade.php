@@ -1,7 +1,7 @@
 @extends('layouts.master', ['title' => $post->title])
 
 @section('head')
-    <meta name="twitter:card" content="summary">
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@jamesoneill83">
     <meta name="twitter:title" content="{{ $post->title }}">
     <meta name="twitter:creator" content="@jamesoneill83">
