@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Storage;
 use ParsedownExtra;
 use Illuminate\Database\Eloquent\Model;
 
@@ -50,9 +51,9 @@ class Post extends Model
         }
     }
 
-    public function setThumbnailUrlAttribute($value)
+    public function getThumbnailAttribute()
     {
-        $this->attributes['thumbnail_url'] = url(str_replace('public/', '', $value));
+        return url(Storage::url($this->attributes['thumbnail_url']));
     }
 
     public function save(array $options = [])

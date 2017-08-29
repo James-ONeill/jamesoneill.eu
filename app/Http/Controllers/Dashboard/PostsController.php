@@ -44,7 +44,7 @@ class PostsController extends Controller
 
         $post = Post::create(array_merge(request(['title', 'body']), [
             'published_at' => $publishedAt,
-            'thumbnail_url' => request()->hasFile('thumbnail') ? request('thumbnail')->store('public/thumbnails') : null
+            'thumbnail_url' => request()->hasFile('thumbnail') ? request('thumbnail')->storePublicly('thumbnails') : null
         ]));
 
         return redirect()->route('dashboard.posts.edit', $post);
@@ -79,7 +79,7 @@ class PostsController extends Controller
 
         $post->update(array_merge(request(['title', 'body']), [
             'published_at' => $publishedAt,
-            'thumbnail_url' => request()->hasFile('thumbnail') ? request('thumbnail')->store('public/thumbnails') : $post->thumbnail_url
+            'thumbnail_url' => request()->hasFile('thumbnail') ? request('thumbnail')->storePublicly('public/thumbnails') : $post->thumbnail_url
         ]));
 
         return redirect()->route('dashboard.posts.edit', $post);

@@ -29,7 +29,10 @@ class PostTest extends TestCase
             'body' => '[Example Link](http://example.com)'
         ]);
 
-        $this->assertEquals('<p><a href="http://example.com">Example Link</a></p>', $post->body_html);
+        $this->assertEquals(
+            '<p><a href="http://example.com">Example Link</a></p>',
+            $post->body_html
+        );
     }
 
     /** @test */
@@ -41,6 +44,18 @@ class PostTest extends TestCase
                 On the playground was where I spent most of my days"
         ]);
 
-        $this->assertEquals('In West Philadelphia born and raised', $post->description);
+        $this->assertEquals(
+            'In West Philadelphia born and raised', $post->description
+        );
+    }
+
+    /** @test */
+    function getting_the_thumbnail()
+    {
+        $post = factory(Post::class)->make([
+            'thumbnail_url' => 'public/thumbnails/abcdefg.jpg'
+        ]);
+
+        $this->assertEquals(url('storage/thumbnails/abcdefg.jpg'), $post->thumbnail);
     }
 }
