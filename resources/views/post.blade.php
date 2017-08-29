@@ -12,6 +12,7 @@
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:type" content="blog"/>
     <meta property="og:title" content="{{ $post->title }}"/>
+    <meta property="og:description" content="{{ $post->description }}">
     <meta property="og:image" content="{{ $post->thumbnail }}">
 @endsection
 
