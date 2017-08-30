@@ -36,7 +36,7 @@ class PostsController extends Controller
 
         if (request()->has('publish')) {
             $publishedAt = Carbon::now();
-        } else if (request()->has('publication_date')) {
+        } else if (request('publication_date')) {
             $publishedAt = Carbon::parse(vsprintf('%s %s', request([
                 'publication_date', 'publication_time'
             ])));
@@ -70,7 +70,7 @@ class PostsController extends Controller
         if (! request()->has('unpublish')) {
             if (request()->has('publish')) {
                 $publishedAt = Carbon::now();
-            } else if (request()->has('publication_date')) {
+            } else if (request('publication_date')) {
                 $publishedAt = Carbon::parse(vsprintf('%s %s', request([
                     'publication_date', 'publication_time'
                 ])));
