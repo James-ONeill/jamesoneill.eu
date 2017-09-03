@@ -17,7 +17,7 @@ return [
             /*
              * The feed will be available on this url.
              */
-            'url' => 'rss/posts',
+            'url' => 'feed',
 
             'title' => 'Blog feed for jamesoneill.eu',
         ],
