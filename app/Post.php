@@ -4,9 +4,11 @@ namespace App;
 
 use Storage;
 use ParsedownExtra;
+use Spatie\Feed\Feedable;
+use Spatie\Feed\FeedItem;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Post extends Model implements Feedable
 {
     protected $guarded = [];
 
@@ -82,5 +84,21 @@ class Post extends Model
     public function scopeUnscheduled($query)
     {
         return $query->whereNull('published_at');
+    }
+
+    public function toFeedItem()
+    {
+        return FeedItem::create()
+            ->id($this->id)
+            ->title($this->title)
+            ->summary($this->description)
+            ->updated($this->updated_at)
+            ->link($this->url())
+            ->author("James O'Neill");
+    }
+
+    public static function getFeedItems()
+    {
+        return static::published()->get();
     }
 }
