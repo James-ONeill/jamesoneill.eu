@@ -22,6 +22,7 @@
                 <div class="container text-center">
                     <img class="gravatar rounded" src="https://www.gravatar.com/avatar/{{ md5('james@levelupdevelopment.co.uk') }}?s=80">
                     <h1><a href="/" class="tdn gray2 hover:gray2 hover:tdn">James O'Neill</a></h1>
+                    <a style="font-size: 30px" href="{{ url('/feed') }}"><i class="fa fa-rss"></i></a>
                     <a style="font-size: 30px" href="https://twitter.com/jamesoneill83"><i class="fa fa-twitter"></i></a>
                     <a style="font-size: 30px" href="https://github.com/James-ONeill"><i class="fa fa-github"></i></a>
                 </div>
