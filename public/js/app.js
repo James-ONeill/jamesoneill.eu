@@ -777,6 +777,8 @@ module.exports = g;
 
 __webpack_require__(31);
 
+window.Vue = __webpack_require__(39);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -784,6 +786,7 @@ __webpack_require__(31);
  */
 
 Vue.component('example', __webpack_require__(36));
+Vue.component('mailing-list-signup', __webpack_require__(65));
 
 var app = new Vue({
   el: '#app'
@@ -1690,17 +1693,11 @@ window._ = __webpack_require__(34);
  * code may be modified to fit the specific needs of your application.
  */
 
-window.$ = window.jQuery = __webpack_require__(33);
+try {
+  window.$ = window.jQuery = __webpack_require__(33);
 
-__webpack_require__(32);
-
-/**
- * Vue is a modern JavaScript library for building interactive web interfaces
- * using reactive data binding and reusable components. Vue's API is clean
- * and simple, leaving you to focus on building your next great project.
- */
-
-window.Vue = __webpack_require__(39);
+  __webpack_require__(32);
+} catch (e) {}
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -1710,10 +1707,21 @@ window.Vue = __webpack_require__(39);
 
 window.axios = __webpack_require__(12);
 
-window.axios.defaults.headers.common = {
-  'X-CSRF-TOKEN': window.Laravel.csrfToken,
-  'X-Requested-With': 'XMLHttpRequest'
-};
+window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+/**
+ * Next we will register the CSRF Token as a common header with Axios so that
+ * all outgoing HTTP requests automatically have it attached. This is just
+ * a simple convenience so we don't have to attach every token manually.
+ */
+
+var token = document.head.querySelector('meta[name="csrf-token"]');
+
+if (token) {
+  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
@@ -41907,6 +41915,157 @@ __webpack_require__(10);
 __webpack_require__(11);
 module.exports = __webpack_require__(9);
 
+
+/***/ }),
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            email: '',
+            error: null,
+            success: false
+        };
+    },
+
+
+    methods: {
+        submit: function submit(event) {
+            var _this = this;
+
+            event.preventDefault();
+
+            axios.post("/mailing-list/members", { email: this.email }).then(function (response) {
+                _this.error = null;
+                _this.success = true;
+            }).catch(function (error) {
+
+                _this.error = error.response.status == 422 ? error.response.data.errors.email[0] : "There appears to be some kind of error 😕";
+                console.log(error.response.data);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Component = __webpack_require__(37)(
+  /* script */
+  __webpack_require__(64),
+  /* template */
+  __webpack_require__(66),
+  /* scopeId */
+  null,
+  /* cssModules */
+  null
+)
+Component.options.__file = "/Users/james/Code/Laravel/jamesoneill.eu/resources/assets/js/components/MailingListSignup.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] MailingListSignup.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-64cb9706", Component.options)
+  } else {
+    hotAPI.reload("data-v-64cb9706", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [(!_vm.success) ? _c('form', {
+    on: {
+      "submit": _vm.submit
+    }
+  }, [(_vm.error != null) ? _c('div', [_vm._v(_vm._s(_vm.error))]) : _vm._e(), _vm._v(" "), _c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.email),
+      expression: "email"
+    }],
+    attrs: {
+      "type": "text"
+    },
+    domProps: {
+      "value": (_vm.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.email = $event.target.value
+      }
+    }
+  }), _vm._v(" "), _c('button', {
+    attrs: {
+      "type": "submit",
+      "disabled": _vm.email == ''
+    },
+    on: {
+      "click": _vm.submit
+    }
+  }, [_vm._v("Sign Up")])]) : _c('div', [_vm._v("\n        Thanks for signing up.\n        I'll drop you an email as soon as I post something new.gi\n    ")])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-64cb9706", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

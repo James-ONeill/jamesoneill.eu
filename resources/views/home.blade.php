@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    <mailing-list-signup></mailing-list-signup>
     <p>I'm a software developer from Bristol in the South West of England.</p>
 
     <p>
