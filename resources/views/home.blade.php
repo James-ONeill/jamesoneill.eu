@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <mailing-list-signup></mailing-list-signup>
+
     <p>I'm a software developer from Bristol in the South West of England.</p>
 
     <p>
@@ -16,6 +16,8 @@
         me an email at <a href="mailto:james@jamesoneill.eu">james@jamesoneill.eu</a>.
         Also you could <a href="https://www.facebook.com/ambertibetanterrier/">like my Dog on Facebook.</a>
     </p>
+
+    <mailing-list-signup></mailing-list-signup>
 
     @if($posts->count())
         <ul class="lsn mt4 pl0">

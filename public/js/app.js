@@ -41958,6 +41958,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -42030,7 +42034,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "submit": _vm.submit
     }
-  }, [(_vm.error != null) ? _c('div', [_vm._v(_vm._s(_vm.error))]) : _vm._e(), _vm._v(" "), _c('input', {
+  }, [_vm._m(0), _vm._v(" "), _c('p', [_vm._v("Enter your email address and I will keep you updated.")]), _vm._v(" "), (_vm.error != null) ? _c('div', [_vm._v(_vm._s(_vm.error))]) : _vm._e(), _vm._v(" "), _c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
@@ -42038,7 +42042,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       expression: "email"
     }],
     attrs: {
-      "type": "text"
+      "type": "email",
+      "placeholder": "Your email address"
     },
     domProps: {
       "value": (_vm.email)
@@ -42057,8 +42062,12 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.submit
     }
-  }, [_vm._v("Sign Up")])]) : _c('div', [_vm._v("\n        Thanks for signing up.\n        I'll drop you an email as soon as I post something new.gi\n    ")])])
-},staticRenderFns: []}
+  }, [_vm._v("Sign Up")])]) : _c('div', [_vm._m(1)])])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('strong', [_vm._v("Do you want an email whenever I post something new?")])])
+},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('p', [_c('strong', [_vm._v("Thanks")]), _vm._v("\n            I'll drop you an email when my next post is done.\n        ")])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

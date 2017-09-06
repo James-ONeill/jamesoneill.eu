@@ -1,13 +1,17 @@
 <template>
     <div>
         <form v-if="!success" @submit="submit">
+            <p><strong>Do you want an email whenever I post something new?</strong></p>
+            <p>Enter your email address and I will keep you updated.</p>
             <div v-if="error != null">{{error}}</div>
-            <input type="text" v-model="email" />
+            <input type="email" v-model="email" placeholder="Your email address" />
             <button type="submit" @click="submit" :disabled="email == ''">Sign Up</button>
         </form>
         <div v-else>
-            Thanks for signing up.
-            I'll drop you an email as soon as I post something new.gi
+            <p>
+                <strong>Thanks</strong>
+                I'll drop you an email when my next post is done.
+            </p>
         </div>
     </div>
 </template>
