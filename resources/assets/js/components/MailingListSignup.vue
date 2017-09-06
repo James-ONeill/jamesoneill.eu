@@ -1,7 +1,7 @@
 <template>
     <div>
         <form v-if="!success" @submit="submit">
-            <p><strong>Do you want an email whenever I post something new?</strong></p>
+            <h2 class="red">Do you want an email whenever I post something new?</h2>
             <p>Enter your email address and I will keep you updated.</p>
             <div v-if="error != null">{{error}}</div>
             <input type="email" v-model="email" placeholder="Your email address" />

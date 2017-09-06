@@ -17,18 +17,18 @@
         Also you could <a href="https://www.facebook.com/ambertibetanterrier/">like my Dog on Facebook.</a>
     </p>
 
-    <mailing-list-signup></mailing-list-signup>
 
     @if($posts->count())
         <ul class="lsn mt4 pl0">
             @foreach($posts as $post)
                 <li class="blog-post mb2">
                     <div>{{ $post->published_at->format('jS F Y') }}</div>
-                    <h2 class="mv0">
+                    <h2 class="mv0 red">
                         <a class="gray2 hover:gray2" href="{{ $post->url() }}">{{ $post->title }}</a>
                     </h2>
                 </li>
             @endforeach
         </ul>
     @endif
+    <mailing-list-signup></mailing-list-signup>
 @endsection
