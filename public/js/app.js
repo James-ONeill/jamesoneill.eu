@@ -41962,6 +41962,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -42030,19 +42047,24 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [(!_vm.success) ? _c('form', {
+  return _c('div', {
+    staticClass: "mailing-list-signup"
+  }, [(!_vm.success) ? _c('form', {
     on: {
       "submit": _vm.submit
     }
   }, [_c('h2', {
-    staticClass: "red"
-  }, [_vm._v("Do you want an email whenever I post something new?")]), _vm._v(" "), _c('p', [_vm._v("Enter your email address and I will keep you updated.")]), _vm._v(" "), (_vm.error != null) ? _c('div', [_vm._v(_vm._s(_vm.error))]) : _vm._e(), _vm._v(" "), _c('input', {
+    staticClass: "mailing-list-signup__title"
+  }, [_vm._v("\n            Do you want an email whenever I post something new?\n        ")]), _vm._v(" "), _c('p', [_vm._v("Enter your email address and I'll keep you updated.")]), _vm._v(" "), (_vm.error != null) ? _c('div', [_vm._v(_vm._s(_vm.error))]) : _vm._e(), _vm._v(" "), _c('div', {
+    staticClass: "mailing-list-signup__fields"
+  }, [_c('input', {
     directives: [{
       name: "model",
       rawName: "v-model",
       value: (_vm.email),
       expression: "email"
     }],
+    staticClass: "mailing-list-signup__email-input",
     attrs: {
       "type": "email",
       "placeholder": "Your email address"
@@ -42057,6 +42079,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       }
     }
   }), _vm._v(" "), _c('button', {
+    staticClass: "mailing-list-signup__button",
     attrs: {
       "type": "submit",
       "disabled": _vm.email == ''
@@ -42064,7 +42087,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.submit
     }
-  }, [_vm._v("Sign Up")])]) : _c('div', [_vm._m(0)])])
+  }, [_vm._v("\n                Sign Up\n            ")])])]) : _c('div', [_vm._m(0)])])
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('p', [_c('strong', [_vm._v("Thanks")]), _vm._v("\n            I'll drop you an email when my next post is done.\n        ")])
 }]}

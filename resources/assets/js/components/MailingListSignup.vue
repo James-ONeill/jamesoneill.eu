@@ -1,11 +1,28 @@
 <template>
-    <div>
+    <div class="mailing-list-signup">
         <form v-if="!success" @submit="submit">
-            <h2 class="red">Do you want an email whenever I post something new?</h2>
-            <p>Enter your email address and I will keep you updated.</p>
+            <h2 class="mailing-list-signup__title">
+                Do you want an email whenever I post something new?
+            </h2>
+            <p>Enter your email address and I'll keep you updated.</p>
             <div v-if="error != null">{{error}}</div>
-            <input type="email" v-model="email" placeholder="Your email address" />
-            <button type="submit" @click="submit" :disabled="email == ''">Sign Up</button>
+            <div class="mailing-list-signup__fields">
+                <input
+                    class="mailing-list-signup__email-input"
+                    type="email"
+                    v-model="email"
+                    placeholder="Your email address"
+                />
+
+                <button
+                    class="mailing-list-signup__button"
+                    type="submit"
+                    @click="submit"
+                    :disabled="email == ''"
+                >
+                    Sign Up
+                </button>
+            </div>
         </form>
         <div v-else>
             <p>

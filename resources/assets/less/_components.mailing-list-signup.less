@@ -1,0 +1,44 @@
+.mailing-list-signup {
+  border: 1px solid #999;
+  padding: 20px;
+  border-radius: 6px;
+  margin-top: 40px;
+}
+
+.mailing-list-signup__title {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+.mailing-list-signup__fields {
+  display: flex;
+}
+
+.mailing-list-signup__email-input {
+  font-size: 14px;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid #999;
+  background-color: #e3e3e3;
+  flex-grow: 1;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.mailing-list-signup__button {
+  background-color: #ff0101;
+  border: 0;
+  font-size: 14px;
+  padding: 12px 14px;
+  border-radius: 6px;
+  color: #fff;
+  margin-left: 20px;
+  cursor: pointer;
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: default;
+  }
+}
