@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-
     <p>I'm a software developer from Bristol in the South West of England.</p>
 
     <p>
@@ -17,7 +16,6 @@
         Also you could <a href="https://www.facebook.com/ambertibetanterrier/">like my Dog on Facebook.</a>
     </p>
 
-
     @if($posts->count())
         <ul class="lsn mt4 pl0">
             @foreach($posts as $post)
@@ -30,5 +28,6 @@
             @endforeach
         </ul>
     @endif
-    <mailing-list-signup></mailing-list-signup>
+
+    <mailing-list-signup />
 @endsection
