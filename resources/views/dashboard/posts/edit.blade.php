@@ -54,24 +54,6 @@
                 @endcomponent
 
                 @component('components.panel', ['heading' => 'Publish'])
-                    <div class="panel-body">
-                        @component('components.form-group', ['name' => 'publication_date'])
-                            <label for="publication_date" class="control-label">
-                                Publication Date
-                            </label>
-
-                            <input class="form-control" name="publication_date" id="publication_date" placeholder="{{ date('Y-m-d') }}" value="{{ old('publication_date', $post->publication_date) }}">
-                        @endcomponent
-
-                        @component('components.form-group', ['name' => 'publication_time'])
-                            <label for="publication_time" class="control-label">
-                                Publication Time
-                            </label>
-
-                            <input class="form-control" name="publication_time" id="publication_time" placeholder="{{ date('H:i') }}" value="{{ old('publication_time', $post->publication_time) }}">
-                        @endcomponent
-                    </div>
-
                     @slot('footer')
                         <div class="btn-group pull-right">
                             <button type="submit" class="btn btn-default">
