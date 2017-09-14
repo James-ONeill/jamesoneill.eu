@@ -26,11 +26,13 @@ Route::group([
 ], function () {
     Route::get('/', 'DashboardController');
 
-    Route::get('posts', 'PostsController@index');
+    Route::get('posts', 'PostsController@index')->name('dashboard.posts.index');
     Route::get('posts/new', 'PostsController@create');
     Route::post('posts', 'PostsController@store');
     Route::get('posts/{post}/edit', 'PostsController@edit')->name('dashboard.posts.edit');
     Route::put('posts/{post}', 'PostsController@update')->name('dashboard.posts.update');
+
+    Route::post('published-posts', 'PublishedPostsController@store')->name('dashboard.posts.publish');
 });
 
 Route::get('{year}/{month}/{day}/{title}', 'BlogController@show')->where([

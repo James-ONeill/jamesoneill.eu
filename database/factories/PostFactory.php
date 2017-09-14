@@ -9,3 +9,10 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
         'published_at' => null
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->state(App\Post::class, 'published', function () {
+    return [
+        'published_at' => (new Carbon\Carbon)->subWeeks(1)
+    ];
+});
