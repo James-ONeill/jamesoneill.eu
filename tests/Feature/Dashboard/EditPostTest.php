@@ -8,11 +8,11 @@ use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class EditPostTest extends TestCase
 {
-    use DatabaseMigrations;
+    use RefreshDatabase;
 
     private function validParams($overrides = [])
     {

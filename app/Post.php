@@ -39,7 +39,7 @@ class Post extends Model implements Feedable
         return $this->published_at ? $this->published_at->format('H:i') : null;
     }
 
-    public function getPublishedAttribute()
+    public function getIsPublishedAttribute()
     {
         return $this->published_at && $this->published_at->subMinute()->isPast();
     }
@@ -56,6 +56,11 @@ class Post extends Model implements Feedable
     public function getThumbnailAttribute()
     {
         return url(Storage::url($this->attributes['thumbnail_url']));
+    }
+
+    public function publish()
+    {
+        return $this->update(['published_at' => $this->freshTimestamp()]);
     }
 
     public function save(array $options = [])
