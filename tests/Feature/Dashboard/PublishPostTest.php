@@ -60,7 +60,7 @@ class PublishPostTest extends TestCase
         $user = factory(User::class)->create();
 
         $response = $this->actingAs($user)->post('/dashboard/published-posts', [
-            'concert_id' => 999,
+            'post_id' => 999,
         ]);
 
         $response->assertStatus(404);

@@ -63,6 +63,11 @@ class Post extends Model implements Feedable
         return $this->update(['published_at' => $this->freshTimestamp()]);
     }
 
+    public function unpublish()
+    {
+        return $this->update(['published_at' => null]);
+    }
+
     public function save(array $options = [])
     {
         $this->slug = str_slug($this->title);

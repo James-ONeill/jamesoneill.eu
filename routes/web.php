@@ -33,6 +33,7 @@ Route::group([
     Route::put('posts/{post}', 'PostsController@update')->name('dashboard.posts.update');
 
     Route::post('published-posts', 'PublishedPostsController@store')->name('dashboard.posts.publish');
+    Route::delete('published-posts/{post}', 'PublishedPostsController@destroy')->name('dashboard.posts.unpublish');
 });
 
 Route::get('{year}/{month}/{day}/{title}', 'BlogController@show')->where([

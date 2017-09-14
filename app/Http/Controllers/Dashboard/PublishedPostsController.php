@@ -20,4 +20,15 @@ class PublishedPostsController extends Controller
 
         return redirect()->route('dashboard.posts.index');
     }
+
+    public function destroy(Post $post)
+    {
+        if (! $post->is_published) {
+            abort(422);
+        }
+
+        $post->unpublish();
+
+        return redirect()->route('dashboard.posts.index');
+    }
 }
