@@ -59,16 +59,6 @@
                             <button type="submit" class="btn btn-default">
                                 Save
                             </button>
-
-                            @if($post->published)
-                                <button type="submit" class="btn btn-danger" name="unpublish" value="true">
-                                    Unpublish
-                                </button>
-                            @else
-                                <button type="submit" class="btn btn-primary" name="publish" value="true">
-                                    Publish
-                                </button>
-                            @endif
                         </div>
                     @endslot
                 @endcomponent

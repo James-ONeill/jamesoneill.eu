@@ -52,10 +52,6 @@
                             <button type="submit" class="btn btn-default">
                                 Save
                             </button>
-
-                            <button type="submit" class="btn btn-primary" name="publish" value="true">
-                                Save &amp; Publish
-                            </button>
                         </div>
                     @endslot
                 @endcomponent
