@@ -27,23 +27,9 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'nullable',
             'thumbnail' => ['nullable', 'file', 'mimes:jpeg,png'],
-            'publication_date' => ['nullable', 'date'],
-            'publication_time' => ['nullable', 'required_with:publication_date', 'date_format:H:i'],
-            'publish' => 'nullable'
         ]);
 
-        $publishedAt = null;
-
-        if (request()->has('publish')) {
-            $publishedAt = Carbon::now();
-        } else if (request('publication_date')) {
-            $publishedAt = Carbon::parse(vsprintf('%s %s', request([
-                'publication_date', 'publication_time'
-            ])));
-        }
-
         $post = Post::create(array_merge(request(['title', 'body']), [
-            'published_at' => $publishedAt,
             'thumbnail_url' => request()->hasFile('thumbnail') ? request('thumbnail')->storePublicly('thumbnails') : null
         ]));
 
@@ -61,24 +47,9 @@ class PostsController extends Controller
             'title' => 'required',
             'body' => 'nullable',
             'thumbnail' => ['nullable', 'file', 'mimes:jpeg,png'],
-            'publication_date' => ['nullable', 'date'],
-            'publication_time' => ['nullable', 'required_with:publication_date', 'date_format:H:i']
         ]);
 
-        $publishedAt = null;
-
-        if (! request()->has('unpublish')) {
-            if (request()->has('publish')) {
-                $publishedAt = Carbon::now();
-            } else if (request('publication_date')) {
-                $publishedAt = Carbon::parse(vsprintf('%s %s', request([
-                    'publication_date', 'publication_time'
-                ])));
-            }
-        }
-
         $post->update(array_merge(request(['title', 'body']), [
-            'published_at' => $publishedAt,
             'thumbnail_url' => request()->hasFile('thumbnail') ? request('thumbnail')->storePublicly('public/thumbnails') : $post->thumbnail_url
         ]));
 

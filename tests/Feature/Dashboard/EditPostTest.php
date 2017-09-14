@@ -20,8 +20,6 @@ class EditPostTest extends TestCase
             'title' => 'Writing Great Tests in Laravel',
             'body' => 'Testing your Laravel application **really** is good...',
             'thumbnail' => UploadedFile::fake()->image('thumbnail.jpg'),
-            'publication_date' => '2001-01-01',
-            'publication_time' => '12:34'
         ], $overrides);
     }
 
@@ -88,8 +86,7 @@ class EditPostTest extends TestCase
         $user = factory(User::class)->create();
         $post = factory(Post::class)->create([
             'title' => 'Writing Tests in Laravel',
-            'body' => 'Testing your Laravel application is good...',
-            'published_at' => null
+            'body' => 'Testing your Laravel application is good...'
         ]);
 
         $this->assertEquals('Writing Tests in Laravel', $post->title);
@@ -104,7 +101,7 @@ class EditPostTest extends TestCase
             $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
             $this->assertEquals('Writing Great Tests in Laravel', $post->title);
             $this->assertEquals('Testing your Laravel application **really** is good...', $post->body);
-            $this->assertEquals('2001-01-01 12:34', $post->published_at->format('Y-m-d H:i'));
+            $this->assertNull($post->published_at);
             Storage::assertExists($post->thumbnail_url);
         });
     }
@@ -239,166 +236,6 @@ class EditPostTest extends TestCase
             $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
             $response->assertSessionHasErrors('thumbnail');
             $this->assertEquals('existing-thumbnail.jpg', $post->thumbnail_url);
-        });
-    }
-
-    /** @test */
-    function publication_date_is_optional()
-    {
-        $user = factory(User::class)->create();
-        $post = factory(Post::class)->create([
-            'title' => 'Writing Tests in Laravel',
-            'body' => 'Testing your Laravel application is good...',
-            'published_at' => null
-        ]);
-
-        $this->assertEquals('Writing Tests in Laravel', $post->title);
-        $this->assertEquals('Testing your Laravel application is good...', $post->body);
-        $this->assertNull($post->published_at);
-        $response = $this->from("/dashboard/posts/{$post->id}/edit")->actingAs($user)->put(
-            "/dashboard/posts/{$post->id}", $this->validParams(['publication_date' => ''])
-        );
-
-        tap($post->fresh(), function ($post) use ($response) {
-            $response->assertStatus(302);
-            $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
-            $this->assertEquals('Writing Great Tests in Laravel', $post->title);
-            $this->assertEquals('Testing your Laravel application **really** is good...', $post->body);
-            $this->assertNull($post->published_at);
-        });
-    }
-
-    /** @test */
-    function publication_date_must_be_valid()
-    {
-        $user = factory(User::class)->create();
-        $post = factory(Post::class)->create([
-            'title' => 'Writing Tests in Laravel',
-            'body' => 'Testing your Laravel application is good...',
-            'published_at' => null
-        ]);
-
-        $this->assertEquals('Writing Tests in Laravel', $post->title);
-        $this->assertEquals('Testing your Laravel application is good...', $post->body);
-        $this->assertNull($post->published_at);
-        $response = $this->from("/dashboard/posts/{$post->id}/edit")->actingAs($user)->put(
-            "/dashboard/posts/{$post->id}", $this->validParams(['publication_date' => 'not a valid date'])
-        );
-
-        tap($post->fresh(), function ($post) use ($response) {
-            $response->assertStatus(302);
-            $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
-            $response->assertSessionHasErrors('publication_date');
-            $this->assertEquals('Writing Tests in Laravel', $post->title);
-            $this->assertEquals('Testing your Laravel application is good...', $post->body);
-            $this->assertNull($post->published_at);
-        });
-    }
-
-    /** @test */
-    function publication_time_is_required_with_publication_date()
-    {
-        $user = factory(User::class)->create();
-        $post = factory(Post::class)->create([
-            'title' => 'Writing Tests in Laravel',
-            'body' => 'Testing your Laravel application is good...',
-            'published_at' => null
-        ]);
-
-        $this->assertEquals('Writing Tests in Laravel', $post->title);
-        $this->assertEquals('Testing your Laravel application is good...', $post->body);
-        $this->assertNull($post->published_at);
-        $response = $this->from("/dashboard/posts/{$post->id}/edit")->actingAs($user)->put(
-            "/dashboard/posts/{$post->id}", $this->validParams(['publication_time' => ''])
-        );
-
-        tap($post->fresh(), function ($post) use ($response) {
-            $response->assertStatus(302);
-            $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
-            $response->assertSessionHasErrors('publication_time');
-            $this->assertEquals('Writing Tests in Laravel', $post->title);
-            $this->assertEquals('Testing your Laravel application is good...', $post->body);
-            $this->assertNull($post->published_at);
-        });
-    }
-
-    /** @test */
-    function publication_time_must_be_valid()
-    {
-        $user = factory(User::class)->create();
-        $post = factory(Post::class)->create([
-            'title' => 'Writing Tests in Laravel',
-            'body' => 'Testing your Laravel application is good...',
-            'published_at' => null
-        ]);
-
-        $this->assertEquals('Writing Tests in Laravel', $post->title);
-        $this->assertEquals('Testing your Laravel application is good...', $post->body);
-        $this->assertNull($post->published_at);
-        $response = $this->from("/dashboard/posts/{$post->id}/edit")->actingAs($user)->put(
-            "/dashboard/posts/{$post->id}", $this->validParams(['publication_time' => 'not a valid time'])
-        );
-
-        tap($post->fresh(), function ($post) use ($response) {
-            $response->assertStatus(302);
-            $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
-            $response->assertSessionHasErrors('publication_time');
-            $this->assertEquals('Writing Tests in Laravel', $post->title);
-            $this->assertEquals('Testing your Laravel application is good...', $post->body);
-            $this->assertNull($post->published_at);
-        });
-    }
-
-    /** @test */
-    function publishing_a_post_immediately()
-    {
-        Carbon::setTestNow('2001-01-01 00:00');
-        $user = factory(User::class)->create();
-        $post = factory(Post::class)->create([
-            'title' => 'Writing Tests in Laravel',
-            'body' => 'Testing your Laravel application is good...',
-            'published_at' => null
-        ]);
-
-        $this->assertEquals('Writing Tests in Laravel', $post->title);
-        $this->assertEquals('Testing your Laravel application is good...', $post->body);
-        $this->assertNull($post->published_at);
-        $response = $this->from("/dashboard/posts/{$post->id}/edit")->actingAs($user)->put(
-            "/dashboard/posts/{$post->id}", $this->validParams(['publish' => true])
-        );
-
-        tap($post->fresh(), function ($post) use ($response) {
-            $response->assertStatus(302);
-            $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
-            $this->assertEquals('Writing Great Tests in Laravel', $post->title);
-            $this->assertEquals('Testing your Laravel application **really** is good...', $post->body);
-            $this->assertEquals('2001-01-01 00:00', $post->published_at->format('Y-m-d H:i'));
-        });
-    }
-
-    /** @test */
-    function unpublishing_a_post()
-    {
-        $user = factory(User::class)->create();
-        $post = factory(Post::class)->create([
-            'title' => 'Writing Tests in Laravel',
-            'body' => 'Testing your Laravel application is good...',
-            'published_at' => '2001-01-01 00:00:00'
-        ]);
-
-        $this->assertEquals('Writing Tests in Laravel', $post->title);
-        $this->assertEquals('Testing your Laravel application is good...', $post->body);
-        $this->assertEquals('2001-01-01 00:00', $post->published_at->format('Y-m-d H:i'));
-        $response = $this->from("/dashboard/posts/{$post->id}/edit")->actingAs($user)->put(
-            "/dashboard/posts/{$post->id}", $this->validParams(['unpublish' => true])
-        );
-
-        tap($post->fresh(), function ($post) use ($response) {
-            $response->assertStatus(302);
-            $response->assertRedirect("/dashboard/posts/{$post->id}/edit");
-            $this->assertEquals('Writing Great Tests in Laravel', $post->title);
-            $this->assertEquals('Testing your Laravel application **really** is good...', $post->body);
-            $this->assertNull($post->published_at);
         });
     }
 }
