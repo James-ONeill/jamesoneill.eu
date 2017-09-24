@@ -13,7 +13,7 @@ class AddMemberTest extends TestCase
     /** @test */
     function successfully_joining_the_mailing_list()
     {
-        $this->disableExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $response = $this->postJson('/mailing-list/members', [
             'email' => 'reader@example.com'

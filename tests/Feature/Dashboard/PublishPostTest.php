@@ -5,6 +5,7 @@ namespace Tests\Feature\Dashboard;
 use App\Post;
 use App\User;
 use Tests\TestCase;
+use App\Events\PostPublished;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PublishPostTest extends TestCase
@@ -14,7 +15,8 @@ class PublishPostTest extends TestCase
     /** @test */
     function a_user_can_publish_posts()
     {
-        $this->disableExceptionHandling();
+        $this->withoutExceptionHandling();
+        $this->expectsEvents(PostPublished::class);
 
         $user = factory(User::class)->create();
         $post = factory(Post::class)->create();

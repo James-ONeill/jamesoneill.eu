@@ -52,7 +52,7 @@ class AddPostTest extends TestCase
     function adding_a_valid_post()
     {
         Storage::fake('local');
-        $this->disableExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create();
 

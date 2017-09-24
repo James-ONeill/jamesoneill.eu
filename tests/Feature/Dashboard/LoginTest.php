@@ -13,7 +13,7 @@ class LoginTest extends TestCase
     /** @test */
     function logging_in_with_valid_credentials()
     {
-        $this->disableExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create([
             'email' => 'james@example.com',
@@ -33,7 +33,7 @@ class LoginTest extends TestCase
     /** @test */
     function logging_in_with_invalid_credentials()
     {
-        $this->disableExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create([
             'email' => 'james@example.com',
@@ -55,7 +55,7 @@ class LoginTest extends TestCase
     /** @test */
     function logging_in_with_an_account_that_does_not_exist()
     {
-        $this->disableExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $response = $this->post('/login', [
             'email' => 'nobody@example.com',

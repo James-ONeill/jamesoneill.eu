@@ -32,7 +32,7 @@ class EditPostTest extends TestCase
     /** @test */
     function users_can_view_the_posts_index()
     {
-        $this->disableExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create();
 
@@ -53,7 +53,7 @@ class EditPostTest extends TestCase
     /** @test */
     function users_can_view_the_edit_posts_form()
     {
-        $this->disableExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create();
         $post = factory(Post::class)->create();
@@ -81,7 +81,7 @@ class EditPostTest extends TestCase
     function editing_a_valid_post()
     {
         Storage::fake('local');
-        $this->disableExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create();
         $post = factory(Post::class)->create([

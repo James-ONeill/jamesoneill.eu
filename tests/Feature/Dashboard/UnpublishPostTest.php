@@ -14,7 +14,7 @@ class UnpublishPostTest extends TestCase
     /** @test */
     function a_user_can_unpublish_posts()
     {
-        $this->disableExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $user = factory(User::class)->create();
         $post = factory(Post::class)->states('published')->create();
