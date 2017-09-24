@@ -6,6 +6,7 @@ use Storage;
 use ParsedownExtra;
 use Spatie\Feed\Feedable;
 use Spatie\Feed\FeedItem;
+use App\Events\PostPublished;
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model implements Feedable
@@ -44,6 +45,12 @@ class Post extends Model implements Feedable
         return $this->published_at && $this->published_at->subMinute()->isPast();
     }
 
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = $value;
+        $this->attributes['slug'] = str_slug($value);
+    }
+
     public function getPublicationStatusAttribute()
     {
         if ($this->published_at) {
@@ -60,19 +67,16 @@ class Post extends Model implements Feedable
 
     public function publish()
     {
-        return $this->update(['published_at' => $this->freshTimestamp()]);
+        return tap($this->update([
+            'published_at' => $this->freshTimestamp()
+        ]), function () {
+            event(new PostPublished($this));
+        });
     }
 
     public function unpublish()
     {
         return $this->update(['published_at' => null]);
-    }
-
-    public function save(array $options = [])
-    {
-        $this->slug = str_slug($this->title);
-
-        return parent::save($options);
     }
 
     public function scopePublished($query)
