@@ -8,6 +8,11 @@ use Illuminate\Validation\Rule;
 
 class MailingListMembersController extends Controller
 {
+    /**
+     * Add a new mailing list member.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function store()
     {
         $data = request()->validate([
@@ -20,6 +25,6 @@ class MailingListMembersController extends Controller
 
         $member = Member::create($data);
 
-        return response()->json(null, 200);
+        return $member;
     }
 }

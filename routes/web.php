@@ -36,7 +36,7 @@ Route::group([
     Route::delete('published-posts/{post}', 'PublishedPostsController@destroy')->name('dashboard.posts.unpublish');
 });
 
-Route::get('{year}/{month}/{day}/{title}', 'BlogController@show')->where([
+Route::get('{year}/{month}/{day}/{slug}', 'BlogController@show')->where([
     'year' => '[0-9]{4}', 'month' => '[0-9]{2}', 'date' => '[0-9]{2}'
 ]);
 

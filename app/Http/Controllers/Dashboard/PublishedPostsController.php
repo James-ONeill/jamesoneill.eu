@@ -10,6 +10,11 @@ use App\Jobs\SendPostPublishedMessage;
 
 class PublishedPostsController extends Controller
 {
+    /**
+     * Publish an unpublished post.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store()
     {
         $post = Post::findOrFail(request('post_id'));
@@ -25,6 +30,11 @@ class PublishedPostsController extends Controller
         return redirect()->route('dashboard.posts.index');
     }
 
+    /**
+     * Unublish a published post.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function destroy(Post $post)
     {
         if (! $post->is_published) {

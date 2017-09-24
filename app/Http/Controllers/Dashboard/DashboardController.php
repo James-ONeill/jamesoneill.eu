@@ -7,6 +7,11 @@ use App\Http\Controllers\Controller;
 
 class DashboardController extends Controller
 {
+    /**
+     * Show the admin dashboard.
+     *
+     * @return \Illuminate\View\View
+     */
     public function __invoke()
     {
         return view('dashboard.index', [

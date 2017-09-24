@@ -11,12 +11,15 @@ class PostPublished extends Mailable
 {
     use Queueable, SerializesModels;
 
+    /**
+     * @var \App\Post
+     */
     public $post;
 
     /**
      * Create a new message instance.
      *
-     * @param  App\Post  $post
+     * @param  \App\Post  $post
      * @return void
      */
     public function __construct($post)

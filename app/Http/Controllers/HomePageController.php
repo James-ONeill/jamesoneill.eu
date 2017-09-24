@@ -6,10 +6,15 @@ use App\Post;
 
 class HomePageController extends Controller
 {
+    /**
+     * Show the home page.
+     *
+     * @return \Illuminate\View\View
+     */
     public function show()
     {
-        return view('home', [
-            'posts' => Post::published()->orderBy('published_at', 'desc')->get()
-        ]);
+        $posts = Post::published()->orderBy('published_at', 'desc')->get();
+
+        return view('home', ['posts' => $posts]);
     }
 }
