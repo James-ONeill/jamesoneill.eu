@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Post;
+use App\MailingList\Member;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Jobs\SendPostPublishedMessage;
 
 class PublishedPostsController extends Controller
 {
@@ -17,6 +19,8 @@ class PublishedPostsController extends Controller
         }
 
         $post->publish();
+
+        SendPostPublishedMessage::dispatch($post);
 
         return redirect()->route('dashboard.posts.index');
     }
