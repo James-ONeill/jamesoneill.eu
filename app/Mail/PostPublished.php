@@ -31,6 +31,7 @@ class PostPublished extends Mailable
      */
     public function build()
     {
-        return $this->markdown('mail.post.published');
+        return $this->markdown('mail.post.published')
+            ->subject($post->title);
     }
 }
