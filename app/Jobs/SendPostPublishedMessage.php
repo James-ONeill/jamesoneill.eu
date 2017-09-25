@@ -38,8 +38,8 @@ class SendPostPublishedMessage implements ShouldQueue
      */
     public function handle()
     {
-        foreach (Member::get(['email'])->pluck('email') as $email) {
-            Mail::to($email)->send(new PostPublished($this->post));
-        }
+        Member::get(['email'])->pluck('email')->each(function ($email) {
+            Mail::to($email)->queue(new PostPublished($this->post));
+        });
     }
 }

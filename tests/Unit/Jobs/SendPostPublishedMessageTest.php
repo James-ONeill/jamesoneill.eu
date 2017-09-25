@@ -25,16 +25,16 @@ class SendPostPublishedMessageTest extends TestCase
 
         SendPostPublishedMessage::dispatch($post);
 
-        Mail::assertSent(PostPublished::class, function ($mail) use ($post) {
+        Mail::assertQueued(PostPublished::class, function ($mail) use ($post) {
             return $mail->hasTo('tony.stark@example.com') && $mail->post->is($post);
         });
-        Mail::assertSent(PostPublished::class, function ($mail) use ($post) {
+        Mail::assertQueued(PostPublished::class, function ($mail) use ($post) {
             return $mail->hasTo('steve.rogers@example.com') && $mail->post->is($post);
         });
-        Mail::assertSent(PostPublished::class, function ($mail) use ($post) {
+        Mail::assertQueued(PostPublished::class, function ($mail) use ($post) {
             return $mail->hasTo('bruce.banner@example.com') && $mail->post->is($post);
         });
-        Mail::assertSent(PostPublished::class, function ($mail) use ($post) {
+        Mail::assertQueued(PostPublished::class, function ($mail) use ($post) {
             return $mail->hasTo('peter.quill@example.com') && $mail->post->is($post);
         });
     }
