@@ -41,7 +41,7 @@
             @section('header')
                 <header class="border-t-8 border-blue py-8">
                     <div class="container mx-auto">
-                        <img class="rounded-full mb-3" src="https://www.gravatar.com/avatar/{{ md5('james@jamesoneill.eu') }}?s=80">
+                        <img class="rounded-full mb-3 box-shadow-1" src="https://www.gravatar.com/avatar/{{ md5('james@jamesoneill.eu') }}?s=80">
 
                         <nav class="font-bold no-underline border-b border-grey text-lg">
                             <ul class="list-reset">
@@ -63,7 +63,7 @@
             @show
 
             <div class="container mx-auto">
-                <h1 class="text-5xl leading-none my-4">
+                <h1 class="text-5xl leading-none my-4 text-shadow-1">
                     Hi, I'm James O'Neill.<br>
                     I'm a software developer.
                 </h1>
@@ -93,11 +93,11 @@
 
             @section('footer')
                 <footer class="container mx-auto">
-                    <div class="mt-8 border-t py-2">
+                    <div class="mt-8 border-t py-8 border-grey">
                         <ul class="list-reset flex justify-center">
                             <li class="px-4">&copy; {{ date('Y') }} James O'Neill</li>
                             |
-                            <li class="px-4"><a href="https://twitter.com/jamesoneill83" class="font-normal">Twitter: @jamesoneill83</a></li>
+                            <li class="px-4"><a href="https://twitter.com/jamesoneill83">Twitter: @jamesoneill83</a></li>
                             |
                             <li class="px-4"><a href="https://github.com/James-ONeill">Twitter: James-ONeill</a></li>
                             |
