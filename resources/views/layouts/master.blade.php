@@ -12,47 +12,86 @@
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/github-gist.min.css">
-        <link rel="stylesheet" type="text/css" href="{{ mix('/css/utilities.css') }}">
+        <link rel="stylesheet" type="text/css" href="{{ mix('/css/main.css') }}">
 
         @yield('head')
-        <script src="{{ mix('/js/app.js') }}" defer></script>
+
+        <script defer src="{{ mix('/js/app.js') }}"></script>
+
+        <script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+        <script defer>hljs.initHighlightingOnLoad();</script>
     </head>
 
-    <body>
+    <body class="font-sans bg-grey-lightest">
         <div id="app">
             @section('header')
-                <header class="header border-t bw4 bc-red pt4 mb4">
-                    <div class="container text-center">
-                        <img class="gravatar rounded" src="https://www.gravatar.com/avatar/{{ md5('james@levelupdevelopment.co.uk') }}?s=80">
-                        <h1><a href="/" class="tdn gray2 hover:gray2 hover:tdn">James O'Neill</a></h1>
-                        <a style="font-size: 30px" href="{{ url('/feed') }}"><i class="fa fa-rss"></i></a>
-                        <a style="font-size: 30px" href="https://twitter.com/jamesoneill83"><i class="fa fa-twitter"></i></a>
-                        <a style="font-size: 30px" href="https://github.com/James-ONeill"><i class="fa fa-github"></i></a>
+                <header class="border-t-8 border-blue py-8">
+                    <div class="container mx-auto">
+                        <img class="rounded-full mb-3" src="https://www.gravatar.com/avatar/{{ md5('james@jamesoneill.eu') }}?s=80">
+
+                        <nav class="font-bold no-underline border-b border-grey text-lg">
+                            <ul class="list-reset">
+                                @component('components.nav-item', ['url' => route('home')])
+                                    Home
+                                @endcomponent
+
+                                @component('components.nav-item')
+                                    Blog
+                                @endcomponent
+
+                                @component('components.nav-item')
+                                    Talks
+                                @endcomponent
+                            </ul>
+                        </nav>
                     </div>
                 </header>
             @show
 
-            <div class="container">
-                <main class="constrain-lg mh-auto">
-                    @yield('content')
-                </main>
+            <div class="container mx-auto">
+                <h1 class="text-5xl leading-none my-4">
+                    Hi, I'm James O'Neill.<br>
+                    I'm a software developer.
+                </h1>
 
-                @section('footer')
-                    <div class="constrain-lg mh-auto">
-                        <footer class="border-t bc-gray1 pt4 mt4 text-center">
-                            <p class="main-footer__copyright">
-                                &copy; James O'Neill
-                                2017
-                                @if(date('Y') > 2017)
-                                    {{ date('- Y') }}
-                                @endif
-                            </p>
-                        </footer>
-                    </div>
-                @show
+                <div class="w-2/3">
+                    <p class="py-4 leading-normal text-blue-dark">
+                        I mainly work on the web and specialise in Laravel and
+                        React but I’m interested in all aspects of modern
+                        software development and always interested in improving
+                        my skills.
+                    </p>
+
+                    <p class="py-4 leading-normal text-blue-dark">
+                        Write a paragraph about something else.
+                    </p>
+
+                    <p class="py-4 leading-normal text-blue-dark">
+                        If you like what you’ve read on my site and want to chat
+                        then I’d love to hear from you. You could drop me an
+                        email at james@jamesoneill.eu or send a tweet to
+                        <a href="https://twitter.com/jamesoneill83">@jamesoneill83</a>.
+                        If you’re in Bristol and want to talk then it would be
+                        great to grab coffee some time.
+                    </p>
+                </div>
             </div>
+
+            @section('footer')
+                <footer class="container mx-auto">
+                    <div class="mt-8 border-t py-2">
+                        <ul class="list-reset flex justify-center">
+                            <li class="px-4">&copy; {{ date('Y') }} James O'Neill</li>
+                            |
+                            <li class="px-4"><a href="https://twitter.com/jamesoneill83" class="font-normal">Twitter: @jamesoneill83</a></li>
+                            |
+                            <li class="px-4"><a href="https://github.com/James-ONeill">Twitter: James-ONeill</a></li>
+                            |
+                            <li class="px-4">RSS</li>
+                        </ul>
+                    </div>
+                </footer>
+            @show
         </div>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
     </body>
 </html>

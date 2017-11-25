@@ -1,24 +1,24 @@
 <template>
-    <div class="mailing-list-signup">
+    <div class="border p-6 rounded bg-white border-grey my-8">
         <form v-if="!success" @submit="submit">
-            <h2 class="mailing-list-signup__title">
+            <h2 class="text-base mb-4">
                 Do you want an email whenever I post something new?
             </h2>
 
-            <p>Enter your email address and I'll keep you updated.</p>
+            <p class="text-sm mb-4">Enter your email address and I'll keep you updated.</p>
 
             <div v-if="error != null">{{error}}</div>
 
-            <div class="mailing-list-signup__fields">
+            <div class="flex">
                 <input
-                    class="mailing-list-signup__email-input"
+                    class="text-sm py-3 px-3 rounded bg-grey-light border border-grey-dark flex-1"
                     type="email"
                     v-model="email"
                     placeholder="Your email address"
                 />
 
                 <button
-                    class="mailing-list-signup__button"
+                    v-bind:class="{'text-sm py-3 px-3 rounded bg-red text-white ml-4': true, 'opacity-50': email == ''}"
                     type="submit"
                     @click="submit"
                     :disabled="email == ''"

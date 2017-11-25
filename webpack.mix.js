@@ -1,4 +1,5 @@
-const { mix } = require('laravel-mix');
+const mix = require('laravel-mix');
+const tailwindcss = require('tailwindcss');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,7 +12,11 @@ const { mix } = require('laravel-mix');
  |
  */
 
-mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/dashboard/app.scss', 'public/css/dashboard.css')
-   .less('resources/assets/less/app.less', 'public/css/utilities.css')
-   .sass('resources/assets/sass/site/app.scss', 'public/css/site.css');
+mix.js('resources/assets/js/app.js', 'public/js');
+
+mix.postCss('resources/assets/css/main.css', 'public/css', [
+  tailwindcss('./tailwind.js'),
+]);
+
+
+

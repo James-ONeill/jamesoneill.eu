@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomePageController@show');
+Route::get('/', 'HomePageController@show')->name('home');
 
 Route::get('about', 'AboutPageController@show');
 
