@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container mx-auto">
-        <h1 class="text-5xl leading-none my-4 text-shadow-1">
+        <h1 class="text-5xl leading-none my-4">
             Hi, I'm James O'Neill.<br>
             I'm a software developer.
         </h1>

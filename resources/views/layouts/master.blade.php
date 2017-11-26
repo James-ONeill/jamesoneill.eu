@@ -70,11 +70,17 @@
                         <ul class="list-reset flex justify-center">
                             <li class="px-4">&copy; {{ date('Y') }} James O'Neill</li>
                             |
-                            <li class="px-4"><a href="https://twitter.com/jamesoneill83">Twitter: @jamesoneill83</a></li>
+                            <li class="px-4">
+                                <a href="https://twitter.com/jamesoneill83">Twitter</a>
+                            </li>
                             |
-                            <li class="px-4"><a href="https://github.com/James-ONeill">Twitter: James-ONeill</a></li>
+                            <li class="px-4">
+                                <a href="https://github.com/James-ONeill">Github</a>
+                            </li>
                             |
                             <li class="px-4"><a href="/feed">RSS</a></li>
+                            |
+                            <li class="px-4">Hosted on <a href="https://m.do.co/c/312253772b44">Digital Ocean</a></li>
                         </ul>
                     </div>
                 </footer>
