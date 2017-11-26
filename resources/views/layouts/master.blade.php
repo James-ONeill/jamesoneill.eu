@@ -74,7 +74,7 @@
                             |
                             <li class="px-4"><a href="https://github.com/James-ONeill">Twitter: James-ONeill</a></li>
                             |
-                            <li class="px-4">RSS</li>
+                            <li class="px-4"><a href="/feed">RSS</a></li>
                         </ul>
                     </div>
                 </footer>
