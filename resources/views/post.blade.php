@@ -17,8 +17,8 @@
 @endsection
 
 @section('content')
-    <h1 class="mb3">{{ $post->title }}</h1>
-    <div class="post__body">
+    <main class="container mx-auto">
+        <h1 class="mb-3">{{ $post->title }}</h1>
         {!! $post->body_html !!}
-    </div>
+    </main>
 @endsection

@@ -37,6 +37,10 @@ a:hover {
   @apply .underline;
 }
 
+p {
+  @apply .leading-normal .my-2;
+}
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.
