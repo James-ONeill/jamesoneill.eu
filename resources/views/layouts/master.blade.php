@@ -52,10 +52,11 @@
                                 @component('components.nav-item', ['url' => route('blog')])
                                     Blog
                                 @endcomponent
-
+                                {{--
                                 @component('components.nav-item')
                                     Talks
                                 @endcomponent
+                                --}}
                             </ul>
                         </nav>
                     </div>
