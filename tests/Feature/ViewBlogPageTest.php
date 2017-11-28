@@ -26,9 +26,9 @@ class ViewBlogPageTest extends TestCase
 
         $response->assertStatus(200);
         $response->data('posts')->assertEquals([
-            $publishedPostA,
+            $publishedPostB,
             $publishedPostC,
-            $publishedPostB
+            $publishedPostA,
         ]);
         $response->data('posts')->assertNotContains($unpublishedPost);
     }

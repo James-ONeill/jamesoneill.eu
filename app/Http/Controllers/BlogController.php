@@ -9,7 +9,7 @@ class BlogController extends Controller
     public function index()
     {
         return view('blog.index', [
-            'posts' => Post::published()->orderBy('published_at')->get()
+            'posts' => Post::published()->orderBy('published_at', 'desc')->get()
         ]);
     }
 
