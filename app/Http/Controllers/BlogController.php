@@ -6,6 +6,13 @@ use App\Post;
 
 class BlogController extends Controller
 {
+    public function index()
+    {
+        return view('blog.index', [
+            'posts' => Post::published()->orderBy('published_at')->get()
+        ]);
+    }
+
     /**
      * Show a single blog post.
      *

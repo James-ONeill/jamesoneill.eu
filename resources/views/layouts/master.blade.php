@@ -49,7 +49,7 @@
                                     Home
                                 @endcomponent
 
-                                @component('components.nav-item')
+                                @component('components.nav-item', ['url' => route('blog')])
                                     Blog
                                 @endcomponent
 

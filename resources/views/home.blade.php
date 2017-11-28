@@ -16,10 +16,6 @@
             </p>
 
             <p class="py-4 leading-normal text-blue-dark">
-                Write a paragraph about something else.
-            </p>
-
-            <p class="py-4 leading-normal text-blue-dark">
                 If you like what you’ve read on my site and want to chat
                 then I’d love to hear from you. You could drop me an
                 email at james@jamesoneill.eu or send a tweet to

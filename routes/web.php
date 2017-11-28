@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomePageController@show')->name('home');
 
-Route::get('about', 'AboutPageController@show');
+Route::get('blog', 'BlogController@index')->name('blog');
 
 Route::group(['namespace' => 'Auth'], function () {
     Route::get('login', 'LoginController@showLoginForm')->name('auth.show-login');

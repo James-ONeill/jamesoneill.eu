@@ -32,7 +32,8 @@ class Post extends Model implements Feedable
 
     public function getPublicationDateAttribute()
     {
-        return $this->published_at ? $this->published_at->format('Y-m-d') : null;
+        return $this->published_at
+            ? $this->published_at->format('Y-m-d') : null;
     }
 
     public function getPublicationTimeAttribute()

@@ -12,7 +12,10 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 $factory->state(App\Post::class, 'published', function () {
-    return [
-        'published_at' => (new Carbon\Carbon)->subWeeks(1)
-    ];
+    return ['published_at' => (new Carbon\Carbon)->subWeeks(1)];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->state(App\Post::class, 'unpublished', function () {
+    return ['published_at' => null];
 });
