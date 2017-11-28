@@ -12,7 +12,6 @@
 */
 
 Route::get('/', 'HomePageController@show')->name('home');
-
 Route::get('blog', 'BlogController@index')->name('blog');
 
 Route::group(['namespace' => 'Auth'], function () {
