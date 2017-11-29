@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-    <main class="container mx-auto">
+    <main class="container mx-auto px-4 md:px-0 lg:px-0">
         <h1 class="mb-3">{{ $post->title }}</h1>
         {!! $post->body_html !!}
     </main>
