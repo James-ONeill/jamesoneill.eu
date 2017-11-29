@@ -30,7 +30,7 @@
  */
 
 a {
-  @apply .font-bold .no-underline .text-blue;
+  @apply .no-underline .text-indigo;
 }
 
 a:hover {
@@ -38,7 +38,7 @@ a:hover {
 }
 
 p {
-  @apply .leading-normal .my-2;
+  @apply .leading-normal .my-2 .text-grey-darker;
 }
 
 /**

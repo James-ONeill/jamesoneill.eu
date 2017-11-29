@@ -7,6 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ $title or "James O'Neill | Software Developer & Human" }}</title>
+
         @include('analytics.google')
 
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet">
@@ -40,8 +41,11 @@
         <div id="app">
             @section('header')
                 <header class="border-t-8 border-blue py-8">
-                    <div class="container mx-auto">
-                        <img class="rounded-full mb-3 box-shadow-1" src="https://www.gravatar.com/avatar/{{ md5('james@jamesoneill.eu') }}?s=80">
+                    <div class="container mx-auto px-4 md:px-0 lg:px-0">
+
+                        <div class="text-center md:text-left lg:text-left">
+                            <img class="rounded-full mb-3 box-shadow-1" src="https://www.gravatar.com/avatar/{{ md5('james@jamesoneill.eu') }}?s=80">
+                        </div>
 
                         <nav class="font-bold no-underline border-b border-grey text-lg">
                             <ul class="list-reset">
@@ -66,22 +70,34 @@
             @yield('content')
 
             @section('footer')
-                <footer class="container mx-auto">
+                <footer class="container mx-auto px-4 md:px-0 lg:px-0">
                     <div class="mt-8 border-t py-8 border-grey">
-                        <ul class="list-reset flex justify-center">
-                            <li class="px-4">&copy; {{ date('Y') }} James O'Neill</li>
-                            |
+                        <ul class="list-reset flex flex-col md:flex-row lg:flex-row justify-center items-center">
+                            <li class="px-4 text-grey-darker md:text-grey-darkest lg:text-grey-darkest text-sm md:text-base lg:text-base mb-2 md:mb-0 lg:mb-0">
+                                &copy; {{ date('Y') }} James O'Neill
+                            </li>
+
+                            <span class="hidden md:inline lg:inline">|</span>
+
                             <li class="px-4">
                                 <a href="https://twitter.com/jamesoneill83">Twitter</a>
                             </li>
-                            |
+
+                            <span class="hidden md:inline lg:inline">|</span>
+
                             <li class="px-4">
                                 <a href="https://github.com/James-ONeill">Github</a>
                             </li>
-                            |
+
+                            <span class="hidden md:inline lg:inline">|</span>
+
                             <li class="px-4"><a href="/feed">RSS</a></li>
-                            |
-                            <li class="px-4">Hosted on <a href="https://m.do.co/c/312253772b44">Digital Ocean</a></li>
+
+                            <span class="hidden md:inline lg:inline">|</span>
+
+                            <li class="px-4 mt-2 md:mt-0 lg:mt-0 text-grey-darker md:text-grey-darkest lg:text-grey-darkest">
+                                Hosted on <a href="https://m.do.co/c/312253772b44">Digital Ocean</a>
+                            </li>
                         </ul>
                     </div>
                 </footer>
