@@ -29,17 +29,11 @@
  * @import "components/forms";
  */
 
-a {
-  @apply .no-underline .text-indigo;
-}
+a { @apply .no-underline .text-indigo; }
 
-a:hover {
-  @apply .underline;
-}
+a:hover { @apply .underline; }
 
-p {
-  @apply .leading-normal .my-2 .text-grey-darker;
-}
+p { @apply .leading-normal .my-6 .text-grey-darker; }
 
 /**
  * This injects all of Tailwind's utility classes, generated based on your

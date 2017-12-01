@@ -15,7 +15,7 @@
                         {{ $post->published_at->format('jS F Y') }}
                     </div>
 
-                    <p class="truncate">{{ $post->description }}</p>
+                    <p class="truncate mt-1 mb-6">{{ $post->description }}</p>
                 </li>
             @endforeach
         </ul>

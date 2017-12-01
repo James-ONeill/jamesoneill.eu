@@ -8,14 +8,14 @@
         </h1>
 
         <div class="md:w-2/3">
-            <p class="py-4 leading-normal text-grey-darker">
+            <p>
                 I mainly work on the web and specialise in Laravel and
                 React but I’m interested in all aspects of modern
                 software development and always interested in improving
                 my skills.
             </p>
 
-            <p class="py-4 leading-normal text-grey-darker">
+            <p>
                 If you like what you’ve read on my site and want to chat
                 then I’d love to hear from you. You could drop me an
                 email at james@jamesoneill.eu or send a tweet to
