@@ -29,7 +29,7 @@
  * @import "components/forms";
  */
 
-a { @apply .no-underline .text-indigo; }
+a { @apply .no-underline .text-blue-dark; }
 
 a:hover { @apply .underline; }
 

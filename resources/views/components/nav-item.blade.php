@@ -1,5 +1,5 @@
-<li class="inline-block">
-    <a class="inline-block hover:no-underline text-blue px-4 py-4" href="{{ $url or '#' }}">
+<li>
+    <a class="-mb-px border-b {{ url()->current() == $url ? 'border-blue-dark' : 'border-transparent' }} inline-block px-4 py-4 text-blue hover:no-underline hover:border-blue-dark" href="{{ $url or '#' }}">
         {{ $slot }}
     </a>
 </li>

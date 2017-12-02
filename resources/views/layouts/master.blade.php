@@ -47,8 +47,8 @@
                             <img class="rounded-full mb-3 box-shadow-1" src="https://www.gravatar.com/avatar/{{ md5('james@jamesoneill.eu') }}?s=80">
                         </div>
 
-                        <nav class="font-bold no-underline border-b border-grey text-lg">
-                            <ul class="list-reset">
+                        <nav class="border-b border-grey font-bold no-underline text-lg">
+                            <ul class="flex list-reset">
                                 @component('components.nav-item', ['url' => route('home')])
                                     Home
                                 @endcomponent
