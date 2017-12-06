@@ -1,4 +1,4 @@
-@extends('layouts.master', ['title' => $post->title])
+@extends('layouts.page', ['title' => $post->title])
 
 @section('head')
     <meta name="twitter:card" content="summary_large_image">

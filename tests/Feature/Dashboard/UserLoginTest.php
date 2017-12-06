@@ -12,6 +12,16 @@ class UserLoginTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    function guest_can_see_the_login_page()
+    {
+        $this->withoutExceptionHandling();
+
+        $response = $this->get('/login');
+
+        $response->assertStatus(200);
+    }
+
+    /** @test */
     function logging_in_with_valid_credentials()
     {
         $this->withoutExceptionHandling();

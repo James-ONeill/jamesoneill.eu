@@ -37,70 +37,16 @@
         <script defer>hljs.initHighlightingOnLoad();</script>
     </head>
 
-    <body class="font-sans bg-grey-lightest">
-        <div id="app">
-            @section('header')
-                <header class="border-t-8 border-blue pt-8 mb-8">
-                    <div class="container mx-auto px-4 md:px-0 lg:px-0">
+    <body class="{{ $bodyClass or 'bg-grey-lightest font-sans' }}">
+        <div id="app" class="h-full">
+            @section('app')
+                @yield('header')
 
-                        <div class="text-center md:text-left lg:text-left">
-                            <img class="rounded-full mb-3 box-shadow-1" src="https://www.gravatar.com/avatar/{{ md5('james@jamesoneill.eu') }}?s=80">
-                        </div>
+                @section('main')
+                    @yield('content')
+                @show
 
-                        <nav class="border-b border-grey font-bold no-underline text-lg">
-                            <ul class="flex list-reset">
-                                @component('components.nav-item', ['url' => route('home')])
-                                    Home
-                                @endcomponent
-
-                                @component('components.nav-item', ['url' => route('blog')])
-                                    Blog
-                                @endcomponent
-                                {{--
-                                @component('components.nav-item')
-                                    Talks
-                                @endcomponent
-                                --}}
-                            </ul>
-                        </nav>
-                    </div>
-                </header>
-            @show
-
-            @yield('content')
-
-            @section('footer')
-                <footer class="container mx-auto px-4 md:px-0 lg:px-0">
-                    <div class="mt-8 border-t py-8 border-grey">
-                        <ul class="list-reset flex flex-col md:flex-row lg:flex-row justify-center items-center">
-                            <li class="px-4 text-grey-darker md:text-grey-darkest lg:text-grey-darkest text-sm md:text-base lg:text-base mb-2 md:mb-0 lg:mb-0">
-                                &copy; {{ date('Y') }} James O'Neill
-                            </li>
-
-                            <span class="hidden md:inline lg:inline">|</span>
-
-                            <li class="px-4">
-                                <a href="https://twitter.com/jamesoneill83">Twitter</a>
-                            </li>
-
-                            <span class="hidden md:inline lg:inline">|</span>
-
-                            <li class="px-4">
-                                <a href="https://github.com/James-ONeill">Github</a>
-                            </li>
-
-                            <span class="hidden md:inline lg:inline">|</span>
-
-                            <li class="px-4"><a href="/feed">RSS</a></li>
-
-                            <span class="hidden md:inline lg:inline">|</span>
-
-                            <li class="px-4 mt-2 md:mt-0 lg:mt-0 text-grey-darker md:text-grey-darkest lg:text-grey-darkest">
-                                Hosted on <a href="https://m.do.co/c/312253772b44">Digital Ocean</a>
-                            </li>
-                        </ul>
-                    </div>
-                </footer>
+                @yield('footer')
             @show
         </div>
     </body>

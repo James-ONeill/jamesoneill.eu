@@ -1,8 +1,8 @@
-@extends('layouts.master')
+@extends('layouts.page')
 
 @section('content')
     <div class="container mx-auto px-4 md:px-0 lg:px-0">
-        <h1 class="text-3xl leading-none my-4">Articles I've Written</h1>
+        <h1 class="leading-none my-4 text-3xl">Articles I've Written</h1>
 
         <ul class="pl-0 md:w-3/4 lg:w-3/4">
             @foreach($posts as $post)
