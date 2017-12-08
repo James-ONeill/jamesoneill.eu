@@ -14,6 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Blade::if('errors', function () {
+            return count(session('errors'));
+        });
+
         Blade::if('published', function ($post) {
             return $post->is_published;
         });

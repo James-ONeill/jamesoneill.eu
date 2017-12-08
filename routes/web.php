@@ -23,6 +23,16 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::post('logout', 'LoginController@logout')->name('auth.logout');
 });
 
+Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
+    Route::view('/', 'dashboard.show');
+
+    Route::get('posts', 'PostsController@index')->name('dashboard.posts.index');
+    Route::get('post/add', 'PostsController@create')->name('dashboard.posts.create');
+    Route::post('posts', 'PostsController@store')->name('dashboard.posts.store');
+    Route::get('post/{post}/edit', 'PostsController@edit')->name('dashboard.posts.edit');
+    Route::put('post/{post}', 'PostsController@update')->name('dashboard.posts.update');
+});
+
 Route::post('mailing-list/members', 'MailingListMembersController@store');
 
 Route::feeds();

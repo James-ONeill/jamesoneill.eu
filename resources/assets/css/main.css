@@ -61,7 +61,3 @@ p { @apply .leading-normal .my-6 .text-grey-darker; }
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
-
-.box-shadow-1 { box-shadow: -2px 2px 5px config('colors.grey'); }
-
-.text-shadow-1 { text-shadow: -2px 2px 5px config('colors.grey'); }
