@@ -71,7 +71,7 @@ class Post extends Model implements Feedable
         return tap($this->update([
             'published_at' => $this->freshTimestamp()
         ]), function () {
-            event(new PostPublished($this));
+            // event(new PostPublished($this));
         });
     }
 
