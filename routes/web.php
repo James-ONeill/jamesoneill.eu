@@ -31,6 +31,9 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' 
     Route::post('posts', 'PostsController@store')->name('dashboard.posts.store');
     Route::get('post/{post}/edit', 'PostsController@edit')->name('dashboard.posts.edit');
     Route::put('post/{post}', 'PostsController@update')->name('dashboard.posts.update');
+
+    Route::post('published-posts', 'PublishedPostsController@store')->name('dashboard.published-posts.store');
+    Route::delete('published-posts', 'PublishedPostsController@destroy')->name('dashboard.published-posts.destroy');
 });
 
 Route::post('mailing-list/members', 'MailingListMembersController@store');
