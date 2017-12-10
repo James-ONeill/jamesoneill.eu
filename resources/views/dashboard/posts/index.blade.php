@@ -23,7 +23,7 @@
 
                 <div class="flex px-4 py-2 bg-grey-lighter rounded shadow-inner">
                     <div>
-                        <a class="bg-blue block rounded-full shadow text-white mx-1 px-3 py-2 text-center text-xs w-16 hover:no-underline" href="{{ route('dashboard.posts.edit', $post) }}">
+                        <a class="border-2 border-blue bg-blue block rounded-full shadow text-white mx-1 px-3 py-2 text-center text-xs w-16 hover:no-underline" href="{{ route('dashboard.posts.edit', $post) }}">
                             Edit
                         </a>
                     </div>
@@ -33,7 +33,7 @@
                             {!! csrf_field() !!}
                             {!! method_field('DELETE') !!}
                             <input type="hidden" name="post_id" value="{{ $post->id }}">
-                            <button class="bg-grey block mx-1 px-3 py-2 rounded-full shadow text-white text-xs w-24 hover:no-underline" type="submit">
+                            <button class="bg-white border-2 border-blue block mx-1 px-3 py-2 rounded-full shadow text-blue text-xs w-24 hover:no-underline" type="submit">
                                 Unublish
                             </button>
                         </form>
@@ -41,7 +41,7 @@
                         <form action="{{ route('dashboard.published-posts.store') }}" method="POST">
                             {!! csrf_field() !!}
                             <input type="hidden" name="post_id" value="{{ $post->id }}">
-                            <button class="bg-blue block mx-1 px-3 py-2 rounded-full shadow text-white text-xs w-24 hover:no-underline" type="submit">
+                            <button class="bg-blue border-2 border-blue block mx-1 px-3 py-2 rounded-full shadow text-white text-xs w-24 hover:no-underline" type="submit">
                                 Publish
                             </button>
                         </form>
