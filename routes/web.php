@@ -24,7 +24,7 @@ Route::group(['namespace' => 'Auth'], function () {
 });
 
 Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' => 'auth'], function () {
-    Route::view('/', 'dashboard.show');
+    Route::view('/', 'dashboard.show')->name('dashboard.show');
 
     Route::get('posts', 'PostsController@index')->name('dashboard.posts.index');
     Route::get('post/add', 'PostsController@create')->name('dashboard.posts.create');
