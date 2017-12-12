@@ -1,7 +1,11 @@
 <?php
 
+use App\Post;
+use Carbon\Carbon;
+use Faker\Generator as Faker;
+
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->define(App\Post::class, function (Faker\Generator $faker) {
+$factory->define(Post::class, function (Faker $faker) {
     return [
         'title' => $faker->unique()->words(3, true),
         'body' => '# Hello, World',
@@ -11,11 +15,15 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
 });
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->state(App\Post::class, 'published', function () {
-    return ['published_at' => (new Carbon\Carbon)->subWeeks(1)];
+$factory->state(Post::class, 'published', function () {
+    return [
+        'published_at' => (new Carbon)->subWeeks(1)
+    ];
 });
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-$factory->state(App\Post::class, 'unpublished', function () {
-    return ['published_at' => null];
+$factory->state(Post::class, 'unpublished', function () {
+    return [
+        'published_at' => null
+    ];
 });

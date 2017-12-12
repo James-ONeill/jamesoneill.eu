@@ -13,8 +13,11 @@
 
 Route::get('/', 'HomePageController@show')->name('home');
 Route::get('blog', 'BlogController@index')->name('blog');
+Route::get('talks', 'TalksController@index')->name('talks');
 Route::get('{year}/{month}/{day}/{slug}', 'BlogController@show')->where([
-    'year' => '[0-9]{4}', 'month' => '[0-9]{2}', 'date' => '[0-9]{2}'
+    'year' => '[0-9]{4}',
+    'month' => '[0-9]{2}',
+    'date' => '[0-9]{2}'
 ]);
 
 Route::group(['namespace' => 'Auth'], function () {

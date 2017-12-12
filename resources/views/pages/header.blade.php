@@ -13,11 +13,12 @@
                 @component('components.nav-item', ['url' => route('blog')])
                     Blog
                 @endcomponent
-                {{--
-                @component('components.nav-item')
-                    Talks
-                @endcomponent
-                --}}
+
+                @if(App\Talk::count())
+                    @component('components.nav-item', ['url' => route('talks')])
+                        Talks
+                    @endcomponent
+                @endif
             </ul>
         </nav>
     </div>
