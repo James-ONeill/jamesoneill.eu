@@ -35,6 +35,9 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' 
     Route::get('post/{post}/edit', 'PostsController@edit')->name('dashboard.posts.edit');
     Route::put('post/{post}', 'PostsController@update')->name('dashboard.posts.update');
 
+    Route::get('talk/add', 'TalksController@create')->name('dashboard.talks.create');
+    Route::post('talks', 'TalksController@store')->name('dashboard.talks.store');
+
     Route::post('published-posts', 'PublishedPostsController@store')->name('dashboard.published-posts.store');
     Route::delete('published-posts', 'PublishedPostsController@destroy')->name('dashboard.published-posts.destroy');
 });
