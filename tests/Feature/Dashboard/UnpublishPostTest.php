@@ -9,6 +9,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UnpublishPostTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test */
     function a_user_can_unpublish_a_published_post()
     {

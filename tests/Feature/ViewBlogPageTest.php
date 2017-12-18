@@ -20,11 +20,12 @@ class ViewBlogPageTest extends TestCase
         $publishedPostB = factory(Post::class)->create(['published_at' => '2017-01-31 00:00:00']);
         $publishedPostC = factory(Post::class)->create(['published_at' => '2017-01-15 00:00:00']);
 
-        $unpublishedPost = factory(Post::class)->create();
+        $unpublishedPost = factory(Post::class)->states('unpublished')->create();
 
         $response = $this->get('/blog');
 
         $response->assertStatus(200);
+
         $response->data('posts')->assertEquals([
             $publishedPostB,
             $publishedPostC,
