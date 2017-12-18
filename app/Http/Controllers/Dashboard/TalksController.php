@@ -26,4 +26,18 @@ class TalksController extends Controller
 
         return redirect('/dashboard/talks');
     }
+
+    public function update(Talk $talk)
+    {
+        $params = request()->validate([
+            'title' => 'required',
+            'event' => 'nullable',
+            'slide_deck_url' => 'nullable',
+            'video_url' => 'nullable',
+        ]);
+
+        $talk->update($params);
+
+        return redirect('/dashboard/talks');
+    }
 }
