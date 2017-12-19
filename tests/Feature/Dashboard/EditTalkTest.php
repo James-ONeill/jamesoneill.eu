@@ -9,6 +9,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class EditTalkTest extends TestCase
 {
+    use RefreshDatabase;
+
     private function oldAttributes($overrides = [])
     {
         return array_merge([
@@ -30,7 +32,77 @@ class EditTalkTest extends TestCase
     }
 
     /** @test */
-    public function successfully_editing_a_talk()
+    function users_can_view_the_talks_index()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $publishedTalkA = factory(Talk::class)->create(['published_at' => '2017-01-01 00:00:00']);
+        $publishedTalkB = factory(Talk::class)->create(['published_at' => '2015-01-01 00:00:00']);
+        $unpublishedTalk = factory(Talk::class)->create(['published_at' => null]);
+        $publishedTalkC = factory(Talk::class)->create(['published_at' => '2017-12-31 00:00:00']);
+
+        $response = $this->actingAs($user)->get('/dashboard/talks');
+
+        $response->assertStatus(200);
+        $response->data('talks')->assertEquals([
+            $publishedTalkA,
+            $publishedTalkB,
+            $unpublishedTalk,
+            $publishedTalkC
+        ]);
+    }
+
+    /** @test */
+    function guests_cannot_view_the_talks_index()
+    {
+        $publishedTalkA = factory(Talk::class)->create(['published_at' => '2017-01-01 00:00:00']);
+        $publishedTalkB = factory(Talk::class)->create(['published_at' => '2015-01-01 00:00:00']);
+        $unpublishedTalk = factory(Talk::class)->create(['published_at' => null]);
+        $publishedTalkC = factory(Talk::class)->create(['published_at' => '2017-12-31 00:00:00']);
+
+        $response = $this->get('/dashboard/talks');
+
+        $response->assertRedirect('/login');
+    }
+
+    /** @test */
+    function users_can_view_the_edit_form_for_talks()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = factory(User::class)->create();
+        $talk = factory(Talk::class)->states('unpublished')->create();
+
+        $response = $this->actingAs($user)->get("/dashboard/talk/{$talk->id}/edit");
+
+        $response->assertStatus(200);
+        $this->assertTrue($response->data('talk')->is($talk));
+    }
+
+    /** @test */
+    function users_see_a_404_page_when_attempting_to_view_the_edit_form_for_a_talk_that_does_not_exist()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->actingAs($user)->get("/dashboard/talk/1337/edit");
+
+        $response->assertStatus(404);
+    }
+
+    /** @test */
+    function guests_are_asked_to_log_in_when_attempting_to_view_the_edit_form_for_talks()
+    {
+        $talk = factory(Talk::class)->states('unpublished')->create();
+
+        $response = $this->get("/dashboard/talk/{$talk->id}/edit");
+
+        $response->assertStatus(302);
+        $response->assertRedirect('/login');
+    }
+
+    /** @test */
+    function successfully_editing_a_talk()
     {
         $this->withoutExceptionHandling();
 
@@ -44,7 +116,7 @@ class EditTalkTest extends TestCase
     }
 
     /** @test */
-    public function users_see_a_404_page_when_attempting_to_edit_a_post_that_does_not_exist()
+    function users_see_a_404_page_when_attempting_to_edit_a_post_that_does_not_exist()
     {
         $user = factory(User::class)->create();
 

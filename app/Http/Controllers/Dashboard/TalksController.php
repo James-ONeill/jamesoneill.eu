@@ -8,6 +8,13 @@ use App\Http\Controllers\Controller;
 
 class TalksController extends Controller
 {
+    public function index()
+    {
+        return view('dashboard.talks.index', [
+            'talks' => Talk::all()
+        ]);
+    }
+
     public function create()
     {
         return view('dashboard.talks.create');
@@ -25,6 +32,13 @@ class TalksController extends Controller
         $talk = Talk::create($params);
 
         return redirect('/dashboard/talks');
+    }
+
+    public function edit(Talk $talk)
+    {
+        return view('dashboard.talks.edit', [
+            'talk' => $talk
+        ]);
     }
 
     public function update(Talk $talk)
