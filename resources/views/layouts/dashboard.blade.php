@@ -16,6 +16,11 @@
                             Posts
                         </a>
                     </li>
+                    <li>
+                        <a class="text-blue text-lg font-bold" href="{{ route('dashboard.talks.index') }}">
+                            Talks
+                        </a>
+                    </li>
                 </ul>
             </nav>
         @show
