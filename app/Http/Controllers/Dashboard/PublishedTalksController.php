@@ -20,4 +20,17 @@ class PublishedTalksController extends Controller
 
         return redirect()->route('dashboard.talks.index');
     }
+
+    public function destroy()
+    {
+        $talk = Talk::findOrFail(request('talk_id'));
+
+        if (! $talk->is_published) {
+            abort(422);
+        }
+
+        $talk->unpublish();
+
+        return redirect()->route('dashboard.talks.index');
+    }
 }

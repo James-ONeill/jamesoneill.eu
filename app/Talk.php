@@ -24,4 +24,9 @@ class Talk extends Model
     {
         return $this->update(['published_at' => $this->freshTimestamp()]);
     }
+
+    public function unpublish()
+    {
+        return $this->update(['published_at' => null]);
+    }
 }

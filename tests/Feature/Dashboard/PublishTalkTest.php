@@ -9,6 +9,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PublishTalkTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test */
     function publishing_an_unpublished_talk()
     {
