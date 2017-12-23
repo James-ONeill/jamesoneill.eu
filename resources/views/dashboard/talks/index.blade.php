@@ -27,6 +27,25 @@
                             Edit
                         </a>
                     </div>
+
+                    @published($talk)
+                        <form action="{{ route('dashboard.published-talks.destroy') }}" method="POST">
+                            {!! csrf_field() !!}
+                            {!! method_field('DELETE') !!}
+                            <input type="hidden" name="talk_id" value="{{ $talk->id }}">
+                            <button class="bg-white border-2 border-blue block mx-1 px-3 py-2 rounded-full shadow text-blue text-xs w-24 hover:no-underline" type="submit">
+                                Unublish
+                            </button>
+                        </form>
+                    @else
+                        <form action="{{ route('dashboard.published-talks.store') }}" method="POST">
+                            {!! csrf_field() !!}
+                            <input type="hidden" name="talk_id" value="{{ $talk->id }}">
+                            <button class="bg-blue border-2 border-blue block mx-1 px-3 py-2 rounded-full shadow text-white text-xs w-24 hover:no-underline" type="submit">
+                                Publish
+                            </button>
+                        </form>
+                    @endpublished
                 </div>
             </div>
         @endforeach
