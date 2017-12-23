@@ -43,6 +43,8 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' 
     Route::post('talks', 'TalksController@store')->name('dashboard.talks.store');
     Route::get('talk/{talk}/edit', 'TalksController@edit')->name('dashboard.talks.edit');
     Route::put('talk/{talk}', 'TalksController@update')->name('dashboard.talks.update');
+
+    Route::post('published-talks', 'PublishedTalksController@store')->name('dashboard.published-talks.store');
 });
 
 Route::post('mailing-list/members', 'MailingListMembersController@store');
