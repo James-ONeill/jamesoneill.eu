@@ -166,7 +166,6 @@ return [
         /*
          * Package Service Providers...
          */
-        BladeSvg\BladeSvgServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
 
         /*

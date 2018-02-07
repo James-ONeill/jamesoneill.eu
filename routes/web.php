@@ -49,5 +49,3 @@ Route::group(['prefix' => 'dashboard', 'namespace' => 'Dashboard', 'middleware' 
 });
 
 Route::post('mailing-list/members', 'MailingListMembersController@store');
-
-Route::feeds();

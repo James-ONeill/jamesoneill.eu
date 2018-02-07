@@ -20,7 +20,7 @@ class AddMemberTest extends TestCase
         ]);
 
         tap(Member::first(), function ($member) use ($response) {
-            $response->assertStatus(200);
+            $response->assertStatus(201);
             $this->assertEquals('reader@example.com', $member->email);
         });
     }

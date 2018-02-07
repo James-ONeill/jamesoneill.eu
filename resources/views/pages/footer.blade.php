@@ -19,10 +19,6 @@
 
             <span class="hidden md:inline lg:inline">|</span>
 
-            <li class="px-4"><a href="/feed">RSS</a></li>
-
-            <span class="hidden md:inline lg:inline">|</span>
-
             <li class="px-4 mt-2 md:mt-0 lg:mt-0 text-grey-darker md:text-grey-darkest lg:text-grey-darkest">
                 Hosted on <a href="https://m.do.co/c/312253772b44">Digital Ocean</a>
             </li>
