@@ -27,6 +27,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
+    protected $appends = [
+        'first_name', 'last_name', 'gravatar'
+    ];
+
     public function getFirstNameAttribute()
     {
         return collect(explode(' ', $this->attributes['name']))->first();
@@ -35,5 +44,10 @@ class User extends Authenticatable
     public function getLastNameAttribute()
     {
         return collect(explode(' ', $this->attributes['name']))->last();
+    }
+
+    public function getGravatarAttribute()
+    {
+        return 'https://www.gravatar.com/avatar/' . md5($this->email);
     }
 }
