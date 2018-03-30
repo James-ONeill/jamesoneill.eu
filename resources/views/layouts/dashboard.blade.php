@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('header')
-    <navbar :user="{{ auth()->user() }}"></navbar>
+    <dashboard-navbar :user="{{ auth()->user() }}"></dashboard-navbar>
 @endsection
 
 @section('main')
