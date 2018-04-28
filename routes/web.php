@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomePageController@show')->name('home');
+Route::view('/', 'home')->name('home');
 Route::get('blog', 'BlogController@index')->name('blog');
 Route::get('talks', 'TalksController@index')->name('talks');
 Route::get('{year}/{month}/{day}/{slug}', 'BlogController@show')->where([
