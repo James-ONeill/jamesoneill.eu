@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('dashboard-navbar', require('./components/DashboardNavbar.vue'));
 Vue.component('mailing-list-signup', require('./components/MailingListSignup.vue'));
+Vue.component('post-editor', require('./components/PostEditor.vue'));
 
 const app = new Vue({
     el: '#app'
