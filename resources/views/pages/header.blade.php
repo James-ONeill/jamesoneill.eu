@@ -1,7 +1,12 @@
 <header class="border-t-8 border-blue pt-8 mb-8">
     <div class="container mx-auto px-4 md:px-0 lg:px-0">
         <div class="text-center md:text-left lg:text-left">
-            <img class="rounded-full mb-3 shadow-avatar" src="https://www.gravatar.com/avatar/{{ md5('james@jamesoneill.eu') }}?s=80">
+            <a href="{{ route('home') }}">
+                <img 
+                    class="rounded-full mb-3 shadow-avatar" 
+                    src="https://www.gravatar.com/avatar/{{ md5('james@jamesoneill.eu') }}?s=80"
+                >
+            </a>
         </div>
 
         <nav class="border-b border-grey font-bold no-underline text-lg">
@@ -14,11 +19,9 @@
                     Blog
                 @endcomponent
 
-                @if(App\Talk::count())
-                    @component('components.nav-item', ['url' => route('talks')])
-                        Talks
-                    @endcomponent
-                @endif
+                @component('components.nav-item', ['url' => route('talks')])
+                    Talks
+                @endcomponent
             </ul>
         </nav>
     </div>
