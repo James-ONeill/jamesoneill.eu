@@ -9,19 +9,22 @@
 
         <div class="md:w-2/3">
             <p>
-                I mainly work on the web and specialise in Laravel and
-                React but I’m interested in all aspects of modern
-                software development and always interested in improving
-                my skills.
+                I live and work near Bristol and specialise in Laravel, JavaScript including Vue &amp; React, and CSS. I 
+                also have a series of live screencasts on  
+                <a href="https://www.youtube.com/channel/UCCf1sLqo_rGEsS7hivNN_5A">Tailwind CSS</a>.
+            </p>
+            
+            <p>
+                This is my personal website and a place for me to share what I’m working on or thinking about, both in 
+                the world of programming and in my other interests.
             </p>
 
             <p>
-                If you like what you’ve read on my site and want to chat
-                then I’d love to hear from you. You could drop me an
-                email at james@jamesoneill.eu or send a tweet to
-                <a href="https://twitter.com/jamesoneill83">@jamesoneill83</a>.
-                If you’re in Bristol and want to talk then it would be
-                great to grab coffee some time.
+                If you're reading this I would love to hear from you. If you're stuck on something I might be able to 
+                help and if you're not then it would still be interesting to hear what you're working on and learn about 
+                you. If you'd like to get in touch you can email me at james @ this domain (or any other domain I own) 
+                or you can find me on <a href="https://twitter.com/jamesoneill83">Twitter (@jamesoneill83)</a>. If you 
+                are near bristol then I would absolutely love to get coffee sometime.
             </p>
         </div>
     </div>
