@@ -1,4 +1,4 @@
-<header class="border-t-8 border-blue pt-8 mb-8">
+<header class="border-t-8 border-blue pt-8 mb-8 lg:mb-16">
     <div class="container mx-auto px-4 md:px-0 lg:px-0">
         <div class="text-center md:text-left lg:text-left">
             <a href="{{ route('home') }}">
