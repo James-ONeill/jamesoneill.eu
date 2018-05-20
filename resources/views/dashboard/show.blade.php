@@ -6,15 +6,39 @@
             Welcome back, {{ auth()->user()->first_name }}
         </h1>
 
-        <h2 class="font-normal mb-6 text-grey w-1/2 mx-auto">
+        <h2 class="font-normal text-grey w-1/2 mx-auto">
             The full dashboard is coming soon. Until then you can still manage
             your posts.
         </h2>
 
-        <div>
-            <a class="bg-blue inline-block py-3 px-6 rounded-full shadow text-white w-auto hover:no-underline" href="{{ route('dashboard.posts.index') }}">
-                Go to Posts
-            </a>
+        <div class="flex mt-8">
+            <div class="px-4 w-1/2">
+                <div class="border-t-4 border-blue p-4 bg-white rounded shadow">
+                    <h2 class="text-lg text-blue">Articles</h2>
+
+                    <a href="{{ route('dashboard.posts.index') }}">
+                        Manage Articles
+                    </a>
+
+                    <a href="{{ route('dashboard.posts.create') }}">
+                        New Article
+                    </a>
+                </div>
+            </div>
+
+            <div class="px-4 w-1/2">
+                <div class="border-t-4 border-blue p-4 bg-white rounded shadow">
+                    <h2 class="text-lg text-blue">Talks</h2>
+
+                    <a href="{{ route('dashboard.talks.index') }}">
+                        Manage Talks
+                    </a>
+
+                    <a href="{{ route('dashboard.talks.create') }}">
+                        New Talk
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

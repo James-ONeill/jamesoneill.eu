@@ -1,4 +1,4 @@
-<footer class="container mx-auto px-4 md:px-0 lg:px-0">
+<footer class="container mx-auto px-4 md:px-0 lg:mt-16 lg:px-0">
     <div class="mt-8 border-t py-8 border-grey">
         <ul class="list-reset flex flex-col md:flex-row lg:flex-row justify-center items-center">
             <li class="px-4 text-grey-darker md:text-grey-darkest lg:text-grey-darkest text-sm md:text-base lg:text-base mb-2 md:mb-0 lg:mb-0">

@@ -6,7 +6,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ $title or "James O'Neill | Software Developer & Human" }}</title>
+        <title>{{ $title or "JamesONeill.eu" }}</title>
+
 
         <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans" rel="stylesheet">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
@@ -31,8 +32,8 @@
         <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 
-        <script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
-        {{--<script defer>hljs.initHighlightingOnLoad();</script>--}}
+        {{-- <script defer src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script> --}}
+        {{-- <script defer>hljs.initHighlightingOnLoad();</script>--}}
     </head>
 
     <body class="{{ $bodyClass or 'bg-grey-lightest font-sans' }}">

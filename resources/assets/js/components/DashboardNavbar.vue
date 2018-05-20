@@ -1,5 +1,10 @@
 <template>
-    <div class="bg-white border-blue border-t-8 flex justify-end mb-8 px-6">
+    <div class="bg-white border-blue border-t-8 flex items-center justify-between mb-8 px-6">
+        <div>
+            <a class="font-bold text-lg text-blue uppercase" href="/dashboard">
+                Dashboard
+            </a>
+        </div>
         <div
             class="cursor-pointer px-2 py-2 relative"
             @click="accountMenuOpen = !accountMenuOpen"
