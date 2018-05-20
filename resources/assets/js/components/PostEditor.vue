@@ -1,41 +1,36 @@
 <template>
-    <div :class="['bg-white shadow border-t-4 px-6 py-8 rounded', errors.length ? 'border-red' : 'border-blue']">
-        <p
-            v-for="(error, index) in errors"
-            :key="index"
-            class="mb-6 mt-0 text-red-light text-base"
-            v-text="error[0]"
-        />
-
-        <label
-            class="block font-bold mb-2"
-            for="title"
-        >
-            Title
-        </label>
-
+    <div>
         <input
-            class="border-none bg-grey-lightest block mb-8 px-4 py-3 shadow w-full"
             type="text"
-            name="title"
+            class="bg-transparent font-bold mb-4 px-6 py-2 text-3xl w-full focus:bg-white focus:no-outline hover:bg-white"
             v-model="title"
-        >
-
-        <textarea
-            class="border-none bg-grey-lightest block mb-8 px-4 py-3 shadow w-full resize-none leading-loose tracking-wide"
-            name="body"
-            rows="30"
-            v-model="body"
         />
 
-        <div class="text-right">
-            <button
-                class="bg-blue inline-block py-3 px-6 rounded-full shadow text-white w-auto hover:no-underline"
-                type="submit"
-                @click.prevent="submit"
-            >
-                Save
-            </button>
+
+        <div :class="['bg-white shadow border-t-4 px-6 py-8 rounded', errors.length ? 'border-red' : 'border-blue']">
+            <p
+                v-for="(error, index) in errors"
+                :key="index"
+                class="mb-6 mt-0 text-red-light text-base"
+                v-text="error[0]"
+            />
+
+            <textarea
+                class="border-none bg-grey-lightest block mb-8 px-4 py-3 shadow w-full resize-none leading-loose tracking-wide"
+                name="body"
+                rows="30"
+                v-model="body"
+            />
+
+            <div class="text-right">
+                <button
+                    class="bg-blue inline-block py-3 px-6 rounded-full shadow text-white w-auto hover:no-underline"
+                    type="submit"
+                    @click.prevent="submit"
+                >
+                    Save
+                </button>
+            </div>
         </div>
     </div>
 </template>
@@ -48,7 +43,7 @@
 
         data() {
             return {
-                title: '',
+                title: 'New Post',
                 body: '',
                 errors: {},
                 ...this.post,
