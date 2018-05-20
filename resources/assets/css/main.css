@@ -62,6 +62,15 @@ li { @apply .leading-normal .text-grey-darker; }
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
+
+.transition-bg {
+    transition-property: background-color;
+}
+
+.transition-300 {
+    transition-duration: 0.3s;
+}
+
 @variants focus {
     .no-outline {
         outline: 0;

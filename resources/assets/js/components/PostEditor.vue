@@ -2,7 +2,7 @@
     <div>
         <input
             type="text"
-            class="bg-transparent font-bold mb-4 px-6 py-2 text-3xl w-full focus:bg-white focus:no-outline hover:bg-white"
+            class="bg-transparent font-bold mb-4 px-6 py-2 rounded text-3xl text-blue transition-300 transition-bg w-full focus:bg-white focus:no-outline hover:bg-white"
             v-model="title"
         />
 
