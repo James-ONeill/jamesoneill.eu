@@ -21,13 +21,13 @@ class PostsController extends Controller
     public function store()
     {
         $params = request()->validate([
-            'title' => 'required',
+            'title' => ['required', 'unique:posts,title'],
             'body' => 'nullable'
         ]);
 
         $post = Post::create($params);
 
-        return redirect('/dashboard/posts');
+        return $post;
     }
 
     public function edit(Post $post)
@@ -38,11 +38,11 @@ class PostsController extends Controller
     public function update(Post $post)
     {
         $params = request()->validate([
-            'title' => 'required',
+            'title' => ['required', 'unique:posts,title'],
         ]);
 
         $post->update(request(['title', 'body']));
 
-        return redirect('/dashboard/posts');
+        return $post;
     }
 }

@@ -18,7 +18,7 @@ class PublishedPostsController extends Controller
 
         $post->publish();
 
-        return redirect()->route('dashboard.posts.index');
+        return $post;
     }
 
     public function destroy()
@@ -31,6 +31,6 @@ class PublishedPostsController extends Controller
 
         $post->unpublish();
 
-        return redirect()->route('dashboard.posts.index');
+        return $post;
     }
 }

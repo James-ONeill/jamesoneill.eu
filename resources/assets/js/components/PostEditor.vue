@@ -1,36 +1,66 @@
 <template>
     <div>
-        <input
-            type="text"
-            class="bg-transparent font-bold mb-4 px-6 py-2 rounded text-3xl text-blue transition-300 transition-bg w-full focus:bg-white focus:no-outline hover:bg-white"
-            v-model="title"
-        />
+        <div class="bg-white mb-16 py-3 shadow -mt-8">
+            <div class="flex items-center max-w-xl mx-auto">
+                <div class="flex-grow mr-4">
+                    <input
+                        type="text"
+                        class="bg-transparent font-bold px-6 py-2 rounded text-3xl text-blue focus:shadow-inner hover:shadow-inner transition-300 w-full focus:bg-grey-light focus:no-outline hover:bg-grey-light"
+                        v-model="title"
+                    />
+                </div>
 
+                <div
+                    v-if="! published_at"
+                    class="mr-2"
+                >
+                    <button
+                        class="bg-blue inline-block py-3 px-6 rounded-full shadow text-white w-auto hover:no-underline focus:no-outline"
+                        :class="{'opacity-25': submitting}"
+                        :disabled="submitting"
+                        type="submit"
+                        @click.prevent="save(publish)"
+                    >
+                        Publish
+                    </button>
+                </div>
 
-        <div :class="['bg-white shadow border-t-4 px-6 py-8 rounded', errors.length ? 'border-red' : 'border-blue']">
-            <p
-                v-for="(error, index) in errors"
-                :key="index"
-                class="mb-6 mt-0 text-red-light text-base"
-                v-text="error[0]"
-            />
+                <div
+                    v-else
+                    class="mr-2"
+                >
+                    <button
+                        class="bg-white inline-block py-3 px-6 rounded-full text-blue w-auto hover:no-underline focus:no-outline"
+                        :class="{'opacity-25': submitting}"
+                        :disabled="submitting"
+                        type="submit"
+                        @click.prevent="save(unpublish)"
+                    >
+                        Unublish
+                    </button>
+                </div>
 
+                <div>
+                    <button
+                        class="bg-blue inline-block py-3 px-6 rounded-full shadow text-white w-auto hover:no-underline focus:no-outline"
+                        :class="{'opacity-25': submitting}"
+                        :disabled="submitting"
+                        type="submit"
+                        @click.prevent="save"
+                    >
+                        Save
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-xl mx-auto">
             <textarea
-                class="border-none bg-grey-lightest block mb-8 px-4 py-3 shadow w-full resize-none leading-loose tracking-wide"
+                class="border-none rounded bg-white-50 block mb-8 px-6 py-3 shadow transition-300 transition-bg w-full resize-none leading-loose tracking-wide focus:bg-white hover:bg-white focus:no-outline"
                 name="body"
                 rows="30"
                 v-model="body"
             />
-
-            <div class="text-right">
-                <button
-                    class="bg-blue inline-block py-3 px-6 rounded-full shadow text-white w-auto hover:no-underline"
-                    type="submit"
-                    @click.prevent="submit"
-                >
-                    Save
-                </button>
-            </div>
         </div>
     </div>
 </template>
@@ -45,7 +75,9 @@
             return {
                 title: 'New Post',
                 body: '',
+                published_at: null,
                 errors: {},
+                submitting: false,
                 ...this.post,
             };
         },
@@ -60,30 +92,50 @@
             },
 
             endpointSuffix() {
-                return this.post ? `post/${this.post.id}` : "posts";
+                return this.post ? `post/${this.id}` : "posts";
             }
         },
 
         methods: {
-            async submit() {
+            async save(after) {
+                this.submitting = true;
+
                 try {
-                    const response = await axios[this.httpMethod](this.endpoint, {
+                    const timer = new Promise(res => setTimeout(res, 300));
+
+                    let response = await axios[this.httpMethod](this.endpoint, {
                         title: this.title,
                         body: this.body,
                     });
 
-                    window.location.href = response.request.responseURL;
-                } catch ({ response }) {
-                    switch (response.status) {
-                        case 405:
-                             window.location.href = response.request.responseURL;
-                             return;
-                        case 422:
-                            this.errors = response.data.errors;
-                            return;
-                        default:
+                    if (typeof after === "function") {
+                        response = await after();
                     }
+
+                    await Promise.all([ response, timer ]);
+
+                    this.id = response.data.id;
+                    this.title = response.data.title;
+                    this.body = response.data.body;
+                    this.published_at = response.data.published_at;
+
+                    this.submitting = false;
+                } catch ({ response }) {
+                    this.submitting = false;
+                    this.errors = response.data.errors;
                 }
+            },
+
+            async publish() {
+                return axios.post('/dashboard/published-posts', {
+                    post_id: this.id
+                });
+            },
+
+            async unpublish() {
+                return axios.delete('/dashboard/published-posts', {
+                    data: { post_id: this.id }
+                });
             },
         }
     };

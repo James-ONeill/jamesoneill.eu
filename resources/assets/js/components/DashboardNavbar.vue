@@ -1,7 +1,7 @@
 <template>
-    <div class="bg-white border-blue border-t-8 flex items-center justify-between mb-8 px-6">
+    <div class="bg-blue flex items-center justify-between mb-8 px-6">
         <div>
-            <a class="font-bold text-lg text-blue uppercase" href="/dashboard">
+            <a class="font-semibold opacity-75 text-sm text-white uppercase hover:opacity-100 hover:no-underline" href="/dashboard">
                 Dashboard
             </a>
         </div>
@@ -10,7 +10,7 @@
             @click="accountMenuOpen = !accountMenuOpen"
         >
             <img
-                class="rounded-full shadow"
+                class="Gravatar rounded-full shadow"
                 :src="gravatar"
             >
 
@@ -80,3 +80,10 @@
         }
     };
 </script>
+
+<style scoped>
+.Gravatar {
+    height: 60px;
+    width: 60px;
+}
+</style>

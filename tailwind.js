@@ -70,7 +70,9 @@ var colors = {
   blue: "#464D5D",
   "blue-light": "#6cb2eb",
   "blue-lighter": "#bcdefa",
-  "blue-lightest": "#eff8ff"
+  "blue-lightest": "#eff8ff",
+
+  "white-50": "rgba(255,255,255,0.5)"
 };
 
 module.exports = {
@@ -756,13 +758,13 @@ module.exports = {
     minHeight: ["responsive"],
     minWidth: ["responsive"],
     negativeMargin: ["responsive"],
-    opacity: ["responsive"],
+    opacity: ["responsive", "hover"],
     overflow: ["responsive"],
     padding: ["responsive"],
     pointerEvents: ["responsive"],
     position: ["responsive"],
     resize: ["responsive"],
-    shadows: ["responsive"],
+    shadows: ["responsive", "focus", "hover"],
     svgFill: [],
     svgStroke: [],
     textAlign: ["responsive"],
