@@ -19,7 +19,10 @@ window.Vue = require('vue');
 
 Vue.component('dashboard-navbar', require('./components/DashboardNavbar.vue'));
 Vue.component('mailing-list-signup', require('./components/MailingListSignup.vue'));
+Vue.component("post-card", require("./components/PostCard.vue"));
 Vue.component('post-editor', require('./components/PostEditor.vue'));
+Vue.component("talk-card", require("./components/TalkCard.vue"));
+Vue.component("talk-editor", require("./components/TalkEditor.vue"));
 
 const app = new Vue({
     el: '#app'

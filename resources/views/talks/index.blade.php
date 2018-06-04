@@ -1,6 +1,6 @@
 @extends('layouts.page')
 
-@section('content')
+@section('main')
     <div class="container mx-auto px-4 md:px-0 lg:px-0">
         <h1 class="leading-none my-4 text-3xl">Talks I've Given</h1>
 

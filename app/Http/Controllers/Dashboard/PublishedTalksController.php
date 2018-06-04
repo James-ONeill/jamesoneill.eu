@@ -18,7 +18,7 @@ class PublishedTalksController extends Controller
 
         $talk->publish();
 
-        return redirect()->route('dashboard.talks.index');
+        return $talk;
     }
 
     public function destroy()
@@ -31,6 +31,6 @@ class PublishedTalksController extends Controller
 
         $talk->unpublish();
 
-        return redirect()->route('dashboard.talks.index');
+        return $talk;
     }
 }

@@ -54,7 +54,19 @@
             </div>
         </div>
 
-        <div class="max-w-xl mx-auto">
+        <ul
+            v-if="hasErrors"
+            class="list-reset max-w-xl mb-8 mx-auto"
+        >
+            <li
+                v-for="(error, key) in errors"
+                :key="key"
+                class="text-red"
+                v-text="error[0]"
+            />
+        </ul>
+
+        <div class="border-t-4 max-w-xl mx-auto rounded" :class="hasErrors ? 'border-red' : 'border-blue'">
             <textarea
                 class="border-none rounded bg-white-50 block mb-8 px-6 py-3 shadow transition-300 transition-bg w-full resize-none leading-loose tracking-wide focus:bg-white hover:bg-white focus:no-outline"
                 name="body"
@@ -73,6 +85,7 @@
 
         data() {
             return {
+                id: null,
                 title: 'New Post',
                 body: '',
                 published_at: null,
@@ -83,8 +96,12 @@
         },
 
         computed: {
+            newPost() {
+                return this.id != null;
+            },
+
             httpMethod() {
-                return this.post ? "put" : "post";
+                return this.id ? "put" : "post";
             },
 
             endpoint() {
@@ -92,7 +109,11 @@
             },
 
             endpointSuffix() {
-                return this.post ? `post/${this.id}` : "posts";
+                return this.id ? `post/${this.id}` : "posts";
+            },
+
+            hasErrors() {
+                return Object.keys(this.errors).length > 0;
             }
         },
 
@@ -118,6 +139,8 @@
                     this.title = response.data.title;
                     this.body = response.data.body;
                     this.published_at = response.data.published_at;
+
+                    history.replaceState(null, null, `/dashboard/post/${this.id}/edit`);
 
                     this.submitting = false;
                 } catch ({ response }) {

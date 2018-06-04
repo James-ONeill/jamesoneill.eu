@@ -31,7 +31,7 @@ class TalksController extends Controller
 
         $talk = Talk::create($params);
 
-        return redirect('/dashboard/talks');
+        return $talk;
     }
 
     public function edit(Talk $talk)
@@ -52,6 +52,6 @@ class TalksController extends Controller
 
         $talk->update($params);
 
-        return redirect('/dashboard/talks');
+        return $talk;
     }
 }

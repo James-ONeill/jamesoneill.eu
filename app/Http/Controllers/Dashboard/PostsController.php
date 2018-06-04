@@ -38,7 +38,7 @@ class PostsController extends Controller
     public function update(Post $post)
     {
         $params = request()->validate([
-            'title' => ['required', 'unique:posts,title'],
+            'title' => ['required', "unique:posts,title,{$post->id}"],
         ]);
 
         $post->update(request(['title', 'body']));

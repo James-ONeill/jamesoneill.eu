@@ -1,59 +1,28 @@
 @extends('layouts.dashboard')
 
-@section('content')
-    <a class="text-grey-darker text-md mb-2 block hover:no-underline" href="{{ route('dashboard.show') }}">
-        &#60; Dashboard
-    </a>
-
-    <h1 class="mb-8">Manage Posts</h1>
-
-    <div class="bg-white p-8 border-t-4 border-blue rounded shadow">
-        @foreach($posts as $post)
-            <div class="flex my-4">
-                <div class="flex-grow">
-                    <h1 class="mb-1 text-xl">{{ $post->title }}</h1>
-                    <div class="text-grey-darker text-blue text-sm">
-                        @published($post)
-                            Published on {{ $post->published_at->format('d/m/Y \a\t h:i') }}
-                        @else
-                            Draft
-                        @endpublished
-                    </div>
-                </div>
-
-                <div class="flex px-4 py-2 bg-grey-lighter rounded shadow-inner">
-                    <div>
-                        <a class="border-2 border-blue bg-blue block rounded-full shadow text-white mx-1 px-3 py-2 text-center text-xs w-16 hover:no-underline" href="{{ route('dashboard.posts.edit', $post) }}">
-                            Edit
-                        </a>
-                    </div>
-
-                    @published($post)
-                        <form action="{{ route('dashboard.published-posts.destroy') }}" method="POST">
-                            {!! csrf_field() !!}
-                            {!! method_field('DELETE') !!}
-                            <input type="hidden" name="post_id" value="{{ $post->id }}">
-                            <button class="bg-white border-2 border-blue block mx-1 px-3 py-2 rounded-full shadow text-blue text-xs w-24 hover:no-underline" type="submit">
-                                Unublish
-                            </button>
-                        </form>
-                    @else
-                        <form action="{{ route('dashboard.published-posts.store') }}" method="POST">
-                            {!! csrf_field() !!}
-                            <input type="hidden" name="post_id" value="{{ $post->id }}">
-                            <button class="bg-blue border-2 border-blue block mx-1 px-3 py-2 rounded-full shadow text-white text-xs w-24 hover:no-underline" type="submit">
-                                Publish
-                            </button>
-                        </form>
-                    @endpublished
-                </div>
+@section('main')
+    <div class="bg-white mb-16 py-3 shadow -mt-8">
+        <div class="flex items-center max-w-xl mx-auto">
+            <div class="flex-grow mr-4">
+                <h1 class="bg-transparent font-bold px-6 py-2 rounded text-3xl text-blue transition-300 w-full">
+                    Manage Posts
+                </h1>
             </div>
-        @endforeach
+            <div class="mr-2">
+                <a class="bg-blue inline-block py-3 px-6 rounded-full shadow text-white w-auto hover:no-underline focus:no-outline" href="{{ route('dashboard.posts.create') }}">
+                    New Post
+                </a>
+            </div>
+        </div>
+    </div>
 
-        <div class="text-right">
-            <a class="bg-blue inline-block mt-4 py-3 px-6 rounded-full shadow text-white w-auto hover:no-underline" href="{{ route('dashboard.posts.create') }}">
-                New Post
-            </a>
+    <div class="flex mb-8">
+        <div class="flex flex-wrap max-w-xl mx-auto">
+            @foreach($posts as $post)
+                <div class="mb-4 px-2 w-1/3">
+                    <post-card :post="{{ $post }}"></post-card>
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection
